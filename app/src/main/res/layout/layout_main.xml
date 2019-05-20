@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_44"
+        android:id="@+id/toolbar"
+        android:background="@color/colorAccent"
+        ></android.support.v7.widget.Toolbar>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/main_fl"
+        android:layout_above="@id/tab"
+        android:layout_below="@id/toolbar"></FrameLayout>
+    <android.support.design.widget.TabLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_60"
+        android:layout_alignParentBottom="true"
+        app:tabMode="fixed"
+        android:id="@+id/tab"
+        app:tabIndicatorHeight="@dimen/dp_0"
+        ></android.support.design.widget.TabLayout>
+
+</RelativeLayout>
