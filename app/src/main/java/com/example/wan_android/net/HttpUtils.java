@@ -1,9 +1,9 @@
-package com.example.wan_android.util;
-
+package com.example.wan_android.net;
 import android.util.Log;
 
 
 import com.example.wan_android.base.Constants;
+import com.example.wan_android.util.SystemUtil;
 
 import java.io.File;
 import java.io.IOException;

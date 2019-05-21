@@ -3,10 +3,11 @@ package com.example.wan_android.model;
 import com.example.wan_android.base.BaseModel;
 import com.example.wan_android.bean.WeChatBean;
 import com.example.wan_android.net.BaseObserver;
+import com.example.wan_android.net.HttpUtils;
 import com.example.wan_android.net.PlaySeriver;
 import com.example.wan_android.net.ResultCallBack;
 import com.example.wan_android.net.RxUtils;
-import com.example.wan_android.util.HttpUtils;
+
 
 import io.reactivex.Observable;
 import io.reactivex.disposables.Disposable;

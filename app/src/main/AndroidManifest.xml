@@ -5,6 +5,9 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
+
+
+
     <application
         android:name=".base.BaseApp"
         android:allowBackup="true"
@@ -22,6 +25,10 @@
         </activity>
         <activity android:name=".ui.activity.MainActivity" />
         <activity android:name=".ui.activity.WeChildActivity"></activity>
+
+        <activity android:name=".ui.activity.ParticularActivity"></activity>
+        <activity android:name=".ui.activity.KnowledgeTabActivity"
+            ></activity>
     </application>
 
 </manifest>
