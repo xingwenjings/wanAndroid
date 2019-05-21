@@ -43,6 +43,7 @@ public class AnimationActivity extends BaseActivity<EmptyView, EmptyPresenter> i
             public void onAnimationEnd(Animation animation) {
                 Intent intent = new Intent(AnimationActivity.this, MainActivity.class);
                 startActivity(intent);
+                finish();
             }
 
             @Override

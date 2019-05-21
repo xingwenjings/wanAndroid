@@ -7,8 +7,8 @@ package com.example.wan_android.net;
          */
 
 public interface ResultCallBack<T> {
-    //æˆåŠŸ
+    //³É¹¦
     void onSuccess(T bean);
-    //å¤±è´¥
+    //Ê§°Ü
     void onFail(String msg);
 }
