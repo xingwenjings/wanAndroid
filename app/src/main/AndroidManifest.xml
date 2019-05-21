@@ -3,7 +3,7 @@
     package="com.example.wan_android">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
+    <uses-permission android:name="android.permission.INTERNET"/>
     <application
         android:name=".base.BaseApp"
         android:allowBackup="true"
@@ -21,6 +21,8 @@
         </intent-filter>
         </activity>
         <activity android:name=".ui.activity.MainActivity"
+            ></activity>
+        <activity android:name=".ui.activity.KnowledgeTabActivity"
             ></activity>
     </application>
 
