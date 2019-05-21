@@ -1,4 +1,4 @@
-package com.example.wan_android.adapter;
+package com.example.wan_android.ui.adapters;
 
 import android.content.Context;
 import android.support.annotation.NonNull;

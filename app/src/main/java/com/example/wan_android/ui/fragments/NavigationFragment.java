@@ -2,32 +2,24 @@ package com.example.wan_android.ui.fragments;
 
 
 import android.os.Build;
-import android.os.Bundle;
 import android.support.annotation.RequiresApi;
-import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 
 import com.example.wan_android.R;
-import com.example.wan_android.adapter.NaviRlvAdapter;
+import com.example.wan_android.ui.adapters.NaviRlvAdapter;
 import com.example.wan_android.base.BaseFragment;
 import com.example.wan_android.base.Constants;
 import com.example.wan_android.bean.NavigationBean;
-import com.example.wan_android.presenter.EmptyPresenter;
 import com.example.wan_android.presenter.NaviPresenter;
-import com.example.wan_android.util.UIUtils;
-import com.example.wan_android.view.EmptyView;
 import com.example.wan_android.view.NaviView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import q.rorbin.verticaltablayout.VerticalTabLayout;
 import q.rorbin.verticaltablayout.adapter.TabAdapter;
