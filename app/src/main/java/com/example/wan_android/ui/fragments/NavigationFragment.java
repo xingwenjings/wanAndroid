@@ -25,7 +25,7 @@ public class NavigationFragment extends BaseFragment<EmptyView,EmptyPresenter> i
 
     @Override
     protected int getLayoutId() {
-        return R.layout.fragment_home;
+        return R.layout.fragment_navigation;
     }
 
 }

@@ -25,6 +25,6 @@ public class KnowLedgeFragment extends BaseFragment<EmptyView,EmptyPresenter> im
 
     @Override
     protected int getLayoutId() {
-        return R.layout.fragment_home;
+        return R.layout.fragment_know_ledge;
     }
 }
