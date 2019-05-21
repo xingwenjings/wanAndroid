@@ -16,4 +16,7 @@
     <string name="wechat">公众号</string>
     <string name="navigation">导航</string>
     <string name="project">项目</string>
+    <string name="gong">公众号</string>
+    <string name="know_title">开发环境</string>
+    <string name="know_name">Android Studio相关</string>
 </resources>

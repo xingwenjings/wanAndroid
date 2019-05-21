@@ -30,8 +30,10 @@ public abstract class BaseFragment<V extends BaseMvpView,P extends BasePresenter
             mPresenter.bind((V)this);
         }
         initView();
+
         initListener();
         initData();
+
         return inflate;
     }
 

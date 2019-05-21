@@ -31,4 +31,5 @@ public interface Constants {
     String PHONE = "phone";
     String TYPE="type";
     String VERIFY_CODE = "verify_code";
+    int SUCCESS_CODE = 0;
 }

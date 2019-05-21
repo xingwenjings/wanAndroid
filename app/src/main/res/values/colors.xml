@@ -9,4 +9,16 @@
     <color name="c_00ceff">#00CEFF</color>
     <color name="c_ff1a00">#FF1A00</color>
     <color name="c_948181">#948181</color>
+    <color name="c_868282">#868282</color>
+    <color name="c_000000">#000000</color>
+    <color name="c_F0F0F0">#F0F0F0</color>
+    <color name="c_ffffff">#ffffff</color>
+    <color name="colorBlack">#000000</color>
+    <color name="c_eaeaea">#EEEEEE</color>
+    <color name="c_999999">#999999</color>
+    <color name="c_333333">#333333</color>
+    <color name="c_FA6A13">#FA6A13</color>
+    <color name="c_373737">#373737</color>
+    <color name="c_FF9D53">#FF9D53</color>
+    <color name="c_a9a9a9">#a9a9a9</color>
 </resources>
