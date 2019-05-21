@@ -1,15 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/home"
+    android:orientation="vertical"
     tools:context=".ui.fragments.HomeFragment">
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/smart"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+        <com.scwang.smartrefresh.header.FunGameHitBlockHeader
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/re_cyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
-
-</FrameLayout>
+        />
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+</LinearLayout>
