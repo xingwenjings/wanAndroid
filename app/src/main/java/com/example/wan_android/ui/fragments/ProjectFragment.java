@@ -25,7 +25,7 @@ public class ProjectFragment extends BaseFragment<EmptyView,EmptyPresenter> impl
 
     @Override
     protected int getLayoutId() {
-        return R.layout.fragment_home;
+        return R.layout.fragment_project;
     }
 
 }

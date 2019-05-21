@@ -25,7 +25,7 @@ public class WeChatFragment extends BaseFragment<EmptyView,EmptyPresenter> imple
 
     @Override
     protected int getLayoutId() {
-        return R.layout.fragment_home;
+        return R.layout.fragment_we_chat;
     }
 
 }
