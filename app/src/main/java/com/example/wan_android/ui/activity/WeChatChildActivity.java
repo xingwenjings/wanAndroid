@@ -12,6 +12,7 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.wan_android.R;
@@ -19,7 +20,9 @@ import com.example.wan_android.base.BaseActivity;
 import com.example.wan_android.presenter.EmptyPresenter;
 import com.example.wan_android.view.EmptyView;
 import com.jaeger.library.StatusBarUtil;
-import com.just.agentweb.AgentWeb;
+
+import com.just.library.AgentWeb;
+import com.just.library.ChromeClientCallbackManager;
 
 import java.net.URL;
 
@@ -40,7 +43,7 @@ public class WeChatChildActivity extends BaseActivity<EmptyView, EmptyPresenter>
     AppBarLayout appbarLayout;
     private String url;
     private String name;
-    private AgentWeb agentWeb;
+    private AgentWeb mAgentWeb;
 
 
     @Override
@@ -60,21 +63,35 @@ public class WeChatChildActivity extends BaseActivity<EmptyView, EmptyPresenter>
         tvTitle.setText(name);
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
-        agentWeb = AgentWeb.with(this)
-                .setAgentWebParent(ll, new LinearLayout.LayoutParams(-1, -1))
+        ChromeClientCallbackManager.ReceivedTitleCallback mCallback;
+        mCallback = null;
+        mAgentWeb = AgentWeb.with(this)
+                .setAgentWebParent(ll, new RelativeLayout.LayoutParams(-1, -1))
                 .useDefaultIndicator()
+                .defaultProgressBarColor()
+                .setReceivedTitleCallback(mCallback)
                 .createAgentWeb()
                 .ready()
                 .go(url);
-        agentWeb.getWebCreator().getWebView().setWebChromeClient(new WebChromeClient(){
+        mAgentWeb.getWebCreator().get().setWebChromeClient(new WebChromeClient() {
+            //获取网页标题
             @Override
             public void onReceivedTitle(WebView view, String title) {
-                if (!TextUtils.isEmpty(title)){
-                    tvTitle.setText(title);
-                }
-                super.onReceivedTitle(view, title);
+                tvTitle.setText(title);
             }
+
+
+//            //获得网页的加载进度
+//            @Override
+//            public void onProgressChanged(WebView view, int newProgress) {
+//                if (newProgress < 100) {
+//                    mPb.setProgress(newProgress);
+//                } else {
+//                    mPb.setVisibility(View.GONE);
+//                }
+//            }
         });
+
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

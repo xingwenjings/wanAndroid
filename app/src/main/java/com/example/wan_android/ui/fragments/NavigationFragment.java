@@ -1,23 +1,23 @@
 package com.example.wan_android.ui.fragments;
 
 
-import android.annotation.SuppressLint;
-import android.annotation.TargetApi;
+import android.content.Intent;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 
 import com.example.wan_android.R;
+import com.example.wan_android.ui.activity.NaviWebViewActivity;
 import com.example.wan_android.ui.adapters.NaviRlvAdapter;
 import com.example.wan_android.base.BaseFragment;
 import com.example.wan_android.base.Constants;
 import com.example.wan_android.bean.NavigationBean;
 import com.example.wan_android.presenter.NaviPresenter;
+import com.example.wan_android.util.ToastUtil;
 import com.example.wan_android.view.NaviView;
 
 import java.util.ArrayList;
@@ -36,13 +36,14 @@ import q.rorbin.verticaltablayout.widget.TabView;
 public class NavigationFragment extends BaseFragment<NaviView, NaviPresenter> implements NaviView {
 
 
-    private static final String TAG = "NavigationFragment";
     @BindView(R.id.tablayout)
     VerticalTabLayout mTablayout;
     @BindView(R.id.rlv)
     RecyclerView mRlv;
+    Unbinder unbinder;
     private NaviRlvAdapter mAdapter;
     private LinearLayoutManager mManager;
+    private ArrayList<NavigationBean.DataBean> mList;
 
     @Override
     protected NaviPresenter initPresenter() {
@@ -58,9 +59,10 @@ public class NavigationFragment extends BaseFragment<NaviView, NaviPresenter> im
     protected void initView() {
         mManager = new LinearLayoutManager(getContext());
         mRlv.setLayoutManager(mManager);
-        ArrayList<NavigationBean.DataBean> list = new ArrayList<>();
-        mAdapter = new NaviRlvAdapter(getContext(), list);
+        mList = new ArrayList<>();
+        mAdapter = new NaviRlvAdapter(getContext(), mList);
         mRlv.setAdapter(mAdapter);
+
     }
 
     @Override
@@ -108,30 +110,21 @@ public class NavigationFragment extends BaseFragment<NaviView, NaviPresenter> im
 
     }
 
-
     @Override
     protected void initListener() {
         //RecyclerView与tab联动
         mRlv.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
-            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
-                super.onScrollStateChanged(recyclerView, newState);
-            }
-
-            @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
-                Log.d(TAG, "onScrolled: "+mManager.findFirstVisibleItemPosition()+",dy:"+dy);
                 mTablayout.setTabSelected(mManager.findFirstVisibleItemPosition());
+
             }
         });
-
-
         //tab与RecyclerView联动
         mTablayout.addOnTabSelectedListener(new VerticalTabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabView tab, int position) {
-                Log.d(TAG, "onTabSelected: "+tab.getTitle()+",position:"+position);
                 mManager.scrollToPositionWithOffset(position,0);
             }
 
@@ -140,5 +133,20 @@ public class NavigationFragment extends BaseFragment<NaviView, NaviPresenter> im
 
             }
         });
+
+        mAdapter.setonClickListener(new NaviRlvAdapter.onClickListener() {
+            @Override
+            public void clickListener(int position, int childPosition) {
+                List<NavigationBean.DataBean.ArticlesBean> list = mList.get(position).getArticles();
+                NavigationBean.DataBean.ArticlesBean bean = list.get(childPosition);
+                String title = bean.getTitle();
+                String link = bean.getLink();
+                Intent intent = new Intent(getContext(), NaviWebViewActivity.class);
+                intent.putExtra(Constants.LINK,link);
+                intent.putExtra(Constants.NAME,title);
+                startActivity(intent);
+            }
+        });
+
     }
 }
