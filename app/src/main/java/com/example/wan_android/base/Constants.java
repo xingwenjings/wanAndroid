@@ -34,4 +34,6 @@ public interface Constants {
     String URL = "url";
     String TITLE = "title";
     int SUCCESS_CODE = 0;
+    String LINK = "link";
+    String NAME = "name";
 }

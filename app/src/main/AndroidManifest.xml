@@ -28,6 +28,8 @@
         <activity android:name=".ui.activity.WeChildActivity" />
         <activity android:name=".ui.activity.ParticularActivity" />
         <activity android:name=".ui.activity.KnowledgeTabActivity" />
+        <activity android:name=".ui.activity.KnowWebViewActivity"/>
+        <activity android:name=".ui.activity.NaviWebViewActivity"/>
     </application>
 
 </manifest>

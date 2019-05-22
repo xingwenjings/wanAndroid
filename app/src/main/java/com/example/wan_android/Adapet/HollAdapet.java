@@ -149,9 +149,11 @@ public class HollAdapet extends RecyclerView.Adapter {
     @Override
     public int getItemCount() {
         if (mhollbanner.size() > 0) {
-            return mholllist.size() -1;
-        }else {
+            return mholllist.size()-1;
+        }else if(mhollZhiding.size()>0){
             return mholllist.size();
+        }else {
+            return  mholllist.size();
         }
     }
 
