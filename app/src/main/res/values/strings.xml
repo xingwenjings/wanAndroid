@@ -19,4 +19,10 @@
     <string name="gong">公众号</string>
     <string name="know_title">开发环境</string>
     <string name="know_name">Android Studio相关</string>
+    <string name="play">玩Android</string>
+    <string name="string_collect">收藏</string>
+    <string name="string_TODO">TODO</string>
+    <string name="string_night">夜间模式</string>
+    <string name="string_settings">设置</string>
+    <string name="string_about_me">关于我们</string>
 </resources>

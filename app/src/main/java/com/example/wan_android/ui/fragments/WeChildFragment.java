@@ -3,35 +3,26 @@ package com.example.wan_android.ui.fragments;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.example.wan_android.R;
 import com.example.wan_android.base.BaseFragment;
-import com.example.wan_android.bean.WeChatBean;
 import com.example.wan_android.bean.WeChildBean;
 import com.example.wan_android.presenter.WeChildPresenter;
-import com.example.wan_android.ui.activity.WeChildActivity;
+import com.example.wan_android.ui.activity.WeChatChildActivity;
 import com.example.wan_android.ui.adapters.WeChildAdapter;
 import com.example.wan_android.util.ToastUtil;
-import com.example.wan_android.view.WeChatView;
 import com.example.wan_android.view.WeChildView;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -80,7 +71,7 @@ public class WeChildFragment extends BaseFragment<WeChildView, WeChildPresenter>
         adapter.setSetOnClick(new WeChildAdapter.setOnClick() {
             @Override
             public void OnClickItem(WeChildBean.DataBean.DatasBean datasBean, int position) {
-                Intent intent = new Intent(getContext(), WeChildActivity.class);
+                Intent intent = new Intent(getContext(), WeChatChildActivity.class);
                 intent.putExtra("link",datasBeans.get(position).getLink());
                 intent.putExtra("name",datasBeans.get(position).getChapterName());
                 startActivity(intent);

@@ -8,16 +8,31 @@
         android:layout_height="@dimen/dp_44"
         android:id="@+id/toolbar"
         android:background="@color/colorAccent"
-        ></android.support.v7.widget.Toolbar>
+        >
+
+    </android.support.v7.widget.Toolbar>
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/main_fl"
         android:layout_above="@id/tab"
         android:layout_below="@id/toolbar"></FrameLayout>
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/fab"
+        android:src="@drawable/right_arrow"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="@dimen/dp_70"
+        android:layout_marginRight="@dimen/dp_20"
+        android:backgroundTint="@color/colorAccent"
+        app:elevation="8dp"
+        app:rippleColor="@color/c_cecece"
+        />
     <android.support.design.widget.TabLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_60"
+        android:layout_height="@dimen/dp_55"
         android:layout_alignParentBottom="true"
         app:tabMode="fixed"
         android:id="@+id/tab"
