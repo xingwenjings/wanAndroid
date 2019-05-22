@@ -84,7 +84,7 @@ public class NaviRlvAdapter extends RecyclerView.Adapter{
         if (title.length() >0 &&title.length() <3){
             label.setTextColor(UIUtils.getColor(R.color.c_fa6a13));
         }else if (title.length() >=3 &&title.length() <6){
-            label.setTextColor(UIUtils.getColor(R.color.colorPrimaryDark));
+            label.setTextColor(UIUtils.getColor(R.color.c_204FFC));
         }else if (title.length() >=6 &&title.length() <9){
             label.setTextColor(UIUtils.getColor(R.color.c_FF9D53));
         }else if (title.length() >=9 &&title.length() <12){

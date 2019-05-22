@@ -3,6 +3,7 @@ package com.example.wan_android.ui.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -22,7 +23,7 @@ import com.example.wan_android.view.KnowledgeView;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
-import com.scwang.smartrefresh.layout.listener.OnRefreshLoadmoreListener;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,10 +64,9 @@ public class KnowLedgeFragment extends BaseFragment<KnowledgeView, KnowledgePres
         recView.setAdapter(adapter);
         LinearLayoutManager manager=new LinearLayoutManager(getContext());
         recView.setLayoutManager(manager);
-        smart.finishLoadmore();
         smart.setOnRefreshListener(new OnRefreshListener() {
             @Override
-            public void onRefresh(RefreshLayout refreshlayout) {
+            public void onRefresh(@NonNull RefreshLayout refreshLayout) {
                 initData();
             }
         });
