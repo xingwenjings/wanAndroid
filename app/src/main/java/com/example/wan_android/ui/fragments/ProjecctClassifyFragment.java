@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -25,7 +26,7 @@ import com.example.wan_android.ui.adapters.RlvProjectClassifyAdapter;
 import com.example.wan_android.view.ProjectClassifyView;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
-import com.scwang.smartrefresh.layout.listener.OnLoadmoreListener;
+import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
 import java.util.ArrayList;
@@ -96,13 +97,14 @@ public class ProjecctClassifyFragment extends BaseFragment<ProjectClassifyView, 
             }
         });
         //加载更多
-        mRefreshLayout.setOnLoadmoreListener(new OnLoadmoreListener() {
+        mRefreshLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
+
             @Override
-            public void onLoadmore(RefreshLayout refreshlayout) {
+            public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
                 page++;
                 initData();
                 mAdapter.notifyDataSetChanged();
-                refreshlayout.finishLoadmore();
+                refreshLayout.finishLoadMore();
             }
         });
     }
