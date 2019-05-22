@@ -1,8 +1,10 @@
 package com.example.wan_android.Adapet;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.annotation.Size;
+import android.support.v7.view.menu.MenuView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.PointerIcon;
@@ -14,12 +16,16 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.wan_android.R;
+import com.example.wan_android.base.Constants;
 import com.example.wan_android.bean.HollBannerbean;
 import com.example.wan_android.bean.HollListbean;
 import com.example.wan_android.bean.HollZhidingbean;
+import com.example.wan_android.ui.activity.HollBannerdetailsActivity;
+import com.example.wan_android.ui.activity.HollListdetailsActivity;
 import com.example.wan_android.util.UIUtils;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
+import com.youth.banner.listener.OnBannerListener;
 import com.youth.banner.loader.ImageLoader;
 
 import java.util.ArrayList;
@@ -30,10 +36,11 @@ public class HollAdapet extends RecyclerView.Adapter {
     private List<HollListbean.DataBean.DatasBean> mholllist;
     private List<HollBannerbean.DataBean> mhollbanner;
     private List<HollZhidingbean.DataBean> mhollZhiding;
+    private OnBannerListener mBannerlistener;
+    private OnItemClickListener mZhidingListener;
+    private OnItemClickListener mListlistener;
 
     public HollAdapet(Context context, List<HollBannerbean.DataBean> mhollbanner, List<HollListbean.DataBean.DatasBean> mholllist, List<HollZhidingbean.DataBean> mhollZhiding) {
-
-
         this.mCon = context;
         this.mhollbanner = mhollbanner;
         this.mholllist = mholllist;
@@ -58,7 +65,7 @@ public class HollAdapet extends RecyclerView.Adapter {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, final int i) {
         int itemViewType = getItemViewType(i);
         if (itemViewType == 0) {
             BannerH bannerh = (BannerH) viewHolder;
@@ -77,18 +84,34 @@ public class HollAdapet extends RecyclerView.Adapter {
                     Glide.with(context).load(banner.getImagePath()).into(imageView);
                 }
             }).start();
+            bannerh.mbanner.setOnBannerListener(new com.youth.banner.listener.OnBannerListener() {
+                @Override
+                public void OnBannerClick(int position) {
+                    Intent intent = new Intent(mCon, HollBannerdetailsActivity.class);
+                    intent.putExtra(Constants.TITLE,mhollbanner.get(position).getTitle());
+                    intent.putExtra(Constants.URL,mhollbanner.get(position).getUrl());
+                    mCon.startActivity(intent);
+                }
+            });
         } else if (itemViewType == 1) {
             ZhiH zhiH = (ZhiH) viewHolder;
             zhiH.mtupian.setBackgroundResource(R.drawable.holl_itemlist_borc_ff1a00f);
             zhiH.mthepubli.setText("置顶");
-            zhiH.mthepubli.setTextColor(UIUtils.getColor(R.color.c_ff1a00));
+            zhiH.mthepubli.setTextColor(UIUtils.getColor(R.color.c_ff1a00 ));
             zhiH.mbiaoti.setText(mhollZhiding.get(i).getSuperChapterName() + "/" + mhollZhiding.get(i).getChapterName());
             zhiH.mnei.setText(mhollZhiding.get(i).getTitle());
             zhiH.mriqi.setText(mhollZhiding.get(i).getNiceDate());
             zhiH.mname.setText(mhollZhiding.get(i).getAuthor());
-
+            zhiH.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(mZhidingListener!=null){
+                        mZhidingListener.OnItemClick(v,i);
+                    }
+                }
+            });
         } else {
-            ListH listh = (ListH) viewHolder;
+             final ListH listh = (ListH) viewHolder;
                 listh.mtupian.setBackgroundResource(R.drawable.holl_itemlist_borc_00ceff);
                 listh.mthepubli.setText("项目");
                 listh.mthepubli.setTextColor(UIUtils.getColor(R.color.c_00ceff));
@@ -97,7 +120,14 @@ public class HollAdapet extends RecyclerView.Adapter {
             listh.mnei.setText(mholllist.get(i).getTitle());
             listh.mriqi.setText(mholllist.get(i).getNiceDate());
             listh.mname.setText(mholllist.get(i).getAuthor());
-
+            listh.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(mListlistener!=null){
+                        mListlistener.OnItemClick(v,i);
+                    }
+                }
+            });
 
         }
 
@@ -120,8 +150,6 @@ public class HollAdapet extends RecyclerView.Adapter {
     public int getItemCount() {
         if (mhollbanner.size() > 0) {
             return mholllist.size() -1;
-        } else if(mhollZhiding.size()>0){
-            return mholllist.size();
         }else {
             return mholllist.size();
         }
@@ -141,6 +169,8 @@ public class HollAdapet extends RecyclerView.Adapter {
         this.mhollZhiding.addAll(mhollZhiding);
         notifyDataSetChanged();
     }
+
+
 
     class BannerH extends RecyclerView.ViewHolder {
 
@@ -193,5 +223,25 @@ public class HollAdapet extends RecyclerView.Adapter {
             mtupian = itemView.findViewById(R.id.tupian);
 
         }
+    }
+      public interface OnListItemClickListener {
+                   void OnItemClick(View v,int position );
+               }
+               public void setOnListItemClickListener(OnItemClickListener Listlistener) {
+                   this.mListlistener= Listlistener;
+               }
+      public interface OnItemClickListener
+               {
+                   void OnItemClick(View v,int position );
+               }
+               public void setOnItemClickListener(OnItemClickListener listener)
+               {
+                   this.mZhidingListener=listener;
+               }
+    public interface  OnBannerListener {
+        void OnBannerItemClick(View v,int position );
+    }
+    public void setOnBannerListener(OnBannerListener Bannerlistener) {
+        this.mBannerlistener=Bannerlistener;
     }
 }
