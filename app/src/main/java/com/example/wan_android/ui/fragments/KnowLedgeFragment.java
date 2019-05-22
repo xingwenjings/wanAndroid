@@ -21,6 +21,7 @@ import com.example.wan_android.view.EmptyView;
 import com.example.wan_android.view.KnowledgeView;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadmoreListener;
 
 import java.util.ArrayList;
@@ -62,12 +63,8 @@ public class KnowLedgeFragment extends BaseFragment<KnowledgeView, KnowledgePres
         recView.setAdapter(adapter);
         LinearLayoutManager manager=new LinearLayoutManager(getContext());
         recView.setLayoutManager(manager);
-        smart.setOnRefreshLoadmoreListener(new OnRefreshLoadmoreListener() {
-            @Override
-            public void onLoadmore(RefreshLayout refreshlayout) {
-                initData();
-            }
-
+        smart.finishLoadmore();
+        smart.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh(RefreshLayout refreshlayout) {
                 initData();
@@ -94,8 +91,6 @@ public class KnowLedgeFragment extends BaseFragment<KnowledgeView, KnowledgePres
         adapter.setList(list);
         adapter.notifyDataSetChanged();
         smart.finishRefresh();
-        smart.finishLoadmore();
-
     }
 
     @Override

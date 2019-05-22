@@ -16,18 +16,15 @@
         android:layout_width="@dimen/dp_120"
         android:layout_height="match_parent"
         android:id="@+id/tablayout"/>
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <android.support.v7.widget.RecyclerView
+                android:scrollbars="vertical"
                 android:id="@+id/rlv"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
         </LinearLayout>
-    </ScrollView>
 
 
 </LinearLayout>

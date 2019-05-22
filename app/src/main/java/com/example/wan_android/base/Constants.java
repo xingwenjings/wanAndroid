@@ -32,4 +32,6 @@ public interface Constants {
     String TYPE="type";
     String VERIFY_CODE = "verify_code";
     int SUCCESS_CODE = 0;
+    String LINK = "link";
+    String NAME = "name";
 }

@@ -17,6 +17,8 @@ import com.example.wan_android.widght.FlowLayout;
 import java.util.ArrayList;
 import java.util.List;
 
+import retrofit2.http.POST;
+
 /**
  * Created by apcnl on 2019/5/21.
  */
@@ -25,6 +27,7 @@ public class NaviRlvAdapter extends RecyclerView.Adapter{
 
     private Context mContext;
     private ArrayList<NavigationBean.DataBean> mList;
+    private onClickListener mListener;
 
     public NaviRlvAdapter(Context context, ArrayList<NavigationBean.DataBean> list) {
 
@@ -40,7 +43,7 @@ public class NaviRlvAdapter extends RecyclerView.Adapter{
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, final int i) {
         ViewHolder holder = (ViewHolder) viewHolder;
         holder.mFlowLayout.removeAllViews();
         NavigationBean.DataBean dataBean = mList.get(i);
@@ -57,6 +60,15 @@ public class NaviRlvAdapter extends RecyclerView.Adapter{
             setTextColor(title,label,j);
             //加到容器中,parent是FlowLayout
             holder.mFlowLayout.addView(inflate);
+            final int finalJ = j;
+            label.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (mListener != null){
+                        mListener.clickListener(i,finalJ);
+                    }
+                }
+            });
         }
         int index = 0;
         for (int j = index; j < list.size(); j++) {
@@ -109,5 +121,13 @@ public class NaviRlvAdapter extends RecyclerView.Adapter{
             mFlowLayout = itemView.findViewById(R.id.fl);
             title = itemView.findViewById(R.id.tv_title);
         }
+    }
+
+    public interface onClickListener{
+        void clickListener(int position,int childPosition);
+    }
+
+    public void setonClickListener(onClickListener listener){
+        this.mListener = listener;
     }
 }
