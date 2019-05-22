@@ -24,9 +24,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.activity.MainActivity" />
-        <activity android:name=".ui.activity.ParticularActivity"></activity>
-        <activity android:name=".ui.activity.KnowledgeTabActivity"
-            ></activity>
+        <activity android:name=".ui.activity.ParticularActivity"/>
+        <activity android:name=".ui.activity.KnowledgeTabActivity"/>
     </application>
 
 </manifest>
