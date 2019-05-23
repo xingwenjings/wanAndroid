@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.activity.SearchActivity">
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="false"
+        android:theme="@style/AppTheme.AppBarOverlay"
+        app:elevation="@dimen/dp_6">
+
+        <android.support.v7.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_56"
+            android:background="@color/c_ffffff"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            app:layout_scrollFlags="scroll|enterAlways">
+
+            <ImageButton
+                android:id="@+id/s_iv"
+                android:layout_width="@dimen/dp_20"
+                android:layout_height="@dimen/dp_20"
+                android:layout_marginEnd="@dimen/dp_12"
+                android:layout_marginRight="@dimen/dp_12"
+                android:background="@android:color/transparent"
+                android:contentDescription="@null"
+                android:src="@drawable/selector_back_arrow_bg" />
+
+            <TextView
+                android:id="@+id/search_tv"
+                android:layout_width="@dimen/dp_54"
+                android:layout_height="@dimen/dp_28"
+                android:layout_gravity="end"
+                android:layout_marginEnd="@dimen/dp_12"
+                android:layout_marginRight="@dimen/dp_12"
+                android:background="@drawable/search_bg"
+                android:contentDescription="@null"
+                android:gravity="center"
+                android:text="@string/action_search"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_12" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/search_edit"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_30"
+                    android:hint="发现更多干货"
+                    android:layout_toRightOf="@id/ivv"
+                    android:layout_marginEnd="@dimen/dp_12"
+                    android:layout_marginRight="@dimen/dp_12"
+                    android:background="@null"
+                    android:inputType="text"
+                    android:paddingStart="@dimen/dp_27"
+                    android:paddingLeft="@dimen/dp_5"
+                    android:paddingEnd="@dimen/dp_1"
+                    android:paddingRight="@dimen/dp_1"
+                    android:textColor="@color/title_black"
+                    android:textCursorDrawable="@drawable/shape_cursor"
+                    android:textSize="@dimen/sp_13" />
+
+                <ImageView
+                    android:id="@+id/ivv"
+                    android:layout_marginTop="@dimen/dp_5"
+                    android:layout_width="@dimen/dp_23"
+                    android:layout_height="@dimen/dp_23"
+                    android:src="@mipmap/ic_search"/>
+
+            </RelativeLayout>
+        </android.support.v7.widget.Toolbar>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_1"
+            android:background="@color/comment_line" />
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/search_scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none"
+        android:visibility="visible"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="@dimen/dp_16">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dp_8"
+                android:text="@string/hot_search"
+                android:textColor="@color/light_deep_red"
+                android:textSize="@dimen/sp_16" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/s_re"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:padding="10dp"></android.support.v7.widget.RecyclerView>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="45dp">
+
+                <TextView
+                    android:id="@+id/shou_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="45dp"
+                    android:gravity="center_vertical"
+                    android:text="搜索历史"
+                    android:textColor="@color/blue"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="45dp"
+                    android:layout_alignParentRight="true"
+                    android:gravity="center_vertical"
+                    android:text="清空"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/shou_tv"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center_horizontal"
+                    android:text="💩快来搜点干货吧🐮"
+                    android:textSize="@dimen/sp_16" />
+
+            </RelativeLayout>
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+</LinearLayout>

@@ -13,7 +13,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <activity
             android:name=".ui.activity.AnimationActivity"
             android:theme="@style/FullScreen">
@@ -23,22 +22,23 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".ui.activity.HollZhidingdetailsActivity"></activity>
+        <activity android:name=".ui.activity.HollZhidingdetailsActivity" />
         <activity android:name=".ui.activity.HollListdetailsActivity" />
         <activity android:name=".ui.activity.HollBannerdetailsActivity" />
         <activity android:name=".ui.activity.MainActivity" />
         <activity android:name=".ui.activity.WeChatChildActivity" />
         <activity android:name=".ui.activity.ParticularActivity" />
         <activity android:name=".ui.activity.KnowledgeTabActivity" />
-        <activity android:name=".ui.activity.KnowWebViewActivity"/>
+        <activity android:name=".ui.activity.KnowWebViewActivity" />
         <activity android:name=".ui.activity.LoginActivity" />
-        <activity android:name=".ui.activity.NaviWebViewActivity"/>
-        <activity android:name=".ui.activity.CollectActivity"></activity>
-        <activity android:name=".ui.activity.SettingsActivity"></activity>
-        <activity android:name=".ui.activity.MeActivity"></activity>
-        <activity android:name=".ui.activity.TodoActivity"></activity>
-        <activity android:name=".ui.activity.NightActivity"></activity>
+        <activity android:name=".ui.activity.NaviWebViewActivity" />
+        <activity android:name=".ui.activity.CollectActivity" />
+        <activity android:name=".ui.activity.SettingsActivity" />
+        <activity android:name=".ui.activity.MeActivity" />
+        <activity android:name=".ui.activity.TodoActivity" />
+        <activity android:name=".ui.activity.NightActivity" />
+        <activity android:name=".ui.activity.SearchActivity" />
+        <activity android:name=".ui.activity.SearchChildActivity"></activity>
     </application>
 
 </manifest>

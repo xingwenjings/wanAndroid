@@ -46,4 +46,12 @@
         <item name="colorButtonNormal">@android:color/white</item>
         <item name="colorControlNormal">@android:color/white</item>
     </style>
+    <!--搜索框的-->
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="style_float_btn">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">bottom|end</item>
+    </style>
 </resources>

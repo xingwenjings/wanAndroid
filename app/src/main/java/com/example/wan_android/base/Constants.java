@@ -36,4 +36,5 @@ public interface Constants {
     int SUCCESS_CODE = 0;
     String LINK = "link";
     String NAME = "name";
+    String SearchName = "search_name";
 }
