@@ -22,6 +22,7 @@ import android.widget.TextView;
 import com.example.wan_android.R;
 import com.example.wan_android.base.BaseActivity;
 import com.example.wan_android.base.BaseFragment;
+import com.example.wan_android.base.Constants;
 import com.example.wan_android.presenter.EmptyPresenter;
 import com.example.wan_android.ui.adapters.MainAdapter;
 import com.example.wan_android.ui.fragments.HomeFragment;
@@ -29,6 +30,7 @@ import com.example.wan_android.ui.fragments.KnowLedgeFragment;
 import com.example.wan_android.ui.fragments.NavigationFragment;
 import com.example.wan_android.ui.fragments.ProjectFragment;
 import com.example.wan_android.ui.fragments.WeChatFragment;
+import com.example.wan_android.util.SpUtil;
 import com.example.wan_android.view.EmptyView;
 import com.jaeger.library.StatusBarUtil;
 
