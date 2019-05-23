@@ -39,6 +39,7 @@
         <activity android:name=".ui.activity.NightActivity" />
         <activity android:name=".ui.activity.SearchActivity" />
         <activity android:name=".ui.activity.SearchChildActivity"></activity>
+        
     </application>
 
 </manifest>

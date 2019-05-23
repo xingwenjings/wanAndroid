@@ -3,6 +3,7 @@ package com.example.wan_android.ui.fragments;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,6 +12,7 @@ import android.view.ViewGroup;
 
 import com.example.wan_android.R;
 import com.example.wan_android.base.BaseFragment;
+import com.example.wan_android.base.Constants;
 import com.example.wan_android.bean.KnowArticleBean;
 import com.example.wan_android.presenter.KnowArticlePresenter;
 import com.example.wan_android.ui.activity.KnowWebViewActivity;
@@ -18,6 +20,7 @@ import com.example.wan_android.ui.adapters.RecKnowArticleAdapter;
 import com.example.wan_android.view.KnowArticleView;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 
 import java.util.ArrayList;
 
@@ -29,6 +32,8 @@ import butterknife.Unbinder;
 public class KnowChildFragment extends BaseFragment<KnowArticleView, KnowArticlePresenter> implements KnowArticleView {
     @BindView(R.id.recView)
     RecyclerView recView;
+    @BindView(R.id.srl)
+    SmartRefreshLayout srl;
     private final int id;
     private int page = 0;
     private ArrayList<KnowArticleBean.DataBean.DatasBean> list;
@@ -61,15 +66,28 @@ public class KnowChildFragment extends BaseFragment<KnowArticleView, KnowArticle
         recView.setAdapter(adapter);
         LinearLayoutManager manager=new LinearLayoutManager(getContext());
         recView.setLayoutManager(manager);
+
     }
 
     @Override
     protected void initListener() {
+        srl.setOnRefreshLoadMoreListener(new OnRefreshLoadMoreListener() {
+            @Override
+            public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
+                ++page;
+                initData();
+            }
+
+            @Override
+            public void onRefresh(@NonNull RefreshLayout refreshLayout) {
+                initData();
+            }
+        });
         adapter.setOnItemClickListener(new RecKnowArticleAdapter.OnItemClickListener() {
             @Override
             public void onClickListener(KnowArticleBean.DataBean.DatasBean bean, int position) {
                 Intent intent=new Intent(getContext(),KnowWebViewActivity.class);
-                intent.putExtra("link",bean.getLink());
+                intent.putExtra(Constants.LINK,bean.getLink());
                 intent.putExtra("name",bean.getTitle());
                 startActivity(intent);
             }
@@ -86,5 +104,7 @@ public class KnowChildFragment extends BaseFragment<KnowArticleView, KnowArticle
         list.addAll(bean.getData().getDatas());
         adapter.setList(list);
         adapter.notifyDataSetChanged();
+        srl.finishRefresh();
+        srl.finishLoadMore();
     }
 }

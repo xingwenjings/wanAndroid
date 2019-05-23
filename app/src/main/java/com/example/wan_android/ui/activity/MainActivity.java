@@ -3,6 +3,7 @@ package com.example.wan_android.ui.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
@@ -17,18 +18,22 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
-
+import android.widget.TextView;
 import com.example.wan_android.R;
 import com.example.wan_android.base.BaseActivity;
 import com.example.wan_android.base.BaseFragment;
 import com.example.wan_android.base.Constants;
+import com.example.wan_android.base.Constants;
+import com.example.wan_android.net.KnowledgeApi;
 import com.example.wan_android.presenter.EmptyPresenter;
 import com.example.wan_android.ui.fragments.HomeFragment;
 import com.example.wan_android.ui.fragments.KnowLedgeFragment;
 import com.example.wan_android.ui.fragments.NavigationFragment;
 import com.example.wan_android.ui.fragments.ProjectFragment;
 import com.example.wan_android.ui.fragments.WeChatFragment;
+import com.example.wan_android.util.SpUtil;
 import com.example.wan_android.view.EmptyView;
 import com.example.wan_android.widght.ScrollAwareFABBehavior;
 
@@ -46,8 +51,8 @@ public class MainActivity extends BaseActivity<EmptyView, EmptyPresenter> implem
     TabLayout tab;
     @BindView(R.id.dl)
     DrawerLayout dl;
-    @BindView(R.id.na)
-    NavigationView na;
+    @BindView(R.id.nav)
+    NavigationView nav;
     @BindView(R.id.fab)
     FloatingActionButton fab;
     @BindView(R.id.tv)
@@ -57,11 +62,12 @@ public class MainActivity extends BaseActivity<EmptyView, EmptyPresenter> implem
     private ArrayList<BaseFragment> fragments;
     private FragmentManager mManager;
     private int mLastFragmentPosition = 0;
-    private final int TYPE_HOME = 0;
-    private final int TYPE_KNOWLEDGE = 1;
-    private final int TYPE_WECHAT = 2;
-    private final int TYPE_NAVIGATION = 3;
-    private final int TYPE_PROJECT = 4;
+    private TextView tvLogin;
+    private final int TYPE_HOME=0;
+    private final int TYPE_KNOWLEDGE=1;
+    private final int TYPE_WECHAT=2;
+    private final int TYPE_NAVIGATION=3;
+    private final int TYPE_PROJECT=4;
 
 
 
@@ -95,21 +101,12 @@ public class MainActivity extends BaseActivity<EmptyView, EmptyPresenter> implem
         initTitles();
         //设置fragment
         initFragment();
-
     }
 
     private void initNav() {
         //解决侧滑菜单图标不显示问题
-        na.setItemIconTintList(null);
-        View headerView = na.getHeaderView(0);
-        TextView login = headerView.findViewById(R.id.login);
-        login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-                startActivity(intent);
-            }
-        });
+        nav.setItemIconTintList(null);
+        
 
 
 
@@ -117,7 +114,13 @@ public class MainActivity extends BaseActivity<EmptyView, EmptyPresenter> implem
 
     @Override
     protected void initListener() {
-        na.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+        View headerView = nav.getHeaderView(0);
+        tvLogin = (TextView) headerView.findViewById(R.id.tv_login);
+        if ((boolean) SpUtil.getParam(Constants.LOGIN, false)) {
+            tvLogin.setText((String) SpUtil.getParam(Constants.USERNAME, "登录"));
+        }
+        tvLogin.setOnClickListener(this);
+        nav.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 switch (menuItem.getItemId()) {
@@ -231,12 +234,21 @@ public class MainActivity extends BaseActivity<EmptyView, EmptyPresenter> implem
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.tv_login:
+                if (tvLogin.getText().toString().trim().equals("登录"))
+                    startActivityForResult(new Intent(this, LoginActivity.class), 100);
+                break;
             case R.id.fab:
                 mainFl.scrollTo(0,0);
                 break;
 
         }
     }
-
-
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 100 && resultCode == KnowledgeApi.SUCCESS_CODE) {
+            tvLogin.setText((String) SpUtil.getParam(Constants.USERNAME, "登录"));
+        }
+    }
 }
