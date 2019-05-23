@@ -30,7 +30,7 @@ public class AnimationActivity extends BaseActivity<EmptyView, EmptyPresenter> i
     @Override
     protected void initView() {
         AlphaAnimation alphaAnimation = new AlphaAnimation(0, 1);
-        alphaAnimation.setDuration(3000);
+        alphaAnimation.setDuration(2000);
         alphaAnimation.setFillAfter(true);
         img.startAnimation(alphaAnimation);
         alphaAnimation.setAnimationListener(new Animation.AnimationListener() {
