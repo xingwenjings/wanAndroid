@@ -35,6 +35,8 @@ public interface Constants {
     String TITLE = "title";
     int SUCCESS_CODE = 0;
     String LINK = "link";
+
+    String LOGIN="login";
     String NAME = "name";
     String MODE = "mode";
     String NIGHT_CURRENT_FRAG_POS = "fragment_pos";
