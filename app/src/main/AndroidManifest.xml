@@ -39,6 +39,7 @@
         <activity android:name=".ui.activity.MeActivity"></activity>
         <activity android:name=".ui.activity.TodoActivity"></activity>
         <activity android:name=".ui.activity.NightActivity"></activity>
+        
     </application>
 
 </manifest>
