@@ -27,6 +27,8 @@
             ></activity>
         <activity android:name=".ui.activity.KnowWebViewActivity"
             ></activity>
+        <activity android:name=".ui.activity.LoginActivity"
+            ></activity>
     </application>
 
 </manifest>

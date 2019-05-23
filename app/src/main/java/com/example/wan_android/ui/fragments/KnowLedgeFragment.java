@@ -73,7 +73,6 @@ public class KnowLedgeFragment extends BaseFragment<KnowledgeView, KnowledgePres
 
             @Override
             public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
-                initData();
             }
         });
     }

@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:id="@+id/login_group">
+
+        <ImageView
+            android:layout_width="@dimen/dp_70"
+            android:layout_height="@dimen/dp_70"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/dp_60"
+            android:src="@mipmap/ic_launcher_round"/>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/et_name_wrapper"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_20"
+            android:layout_marginRight="@dimen/dp_20"
+            android:layout_marginTop="@dimen/dp_50">
+
+            <EditText
+                android:id="@+id/et_name"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/username"
+                android:maxLines="1"
+                android:inputType="text"
+                android:maxLength="13"
+                android:ellipsize="end"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/et_psw_wrapper"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_20"
+            android:layout_marginRight="@dimen/dp_20"
+            android:layout_marginTop="@dimen/dp_20">
+
+            <EditText
+                android:id="@+id/et_psw"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/psw"
+                android:maxLines="1"
+                android:inputType="textPassword"
+                android:maxLength="13"
+                android:ellipsize="end"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+        <Button
+            android:id="@+id/btn_login"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_35"
+            android:layout_margin="@dimen/dp_20"
+            android:text="@string/login"
+            android:textColor="@color/white"
+            android:background="@color/colorPrimaryDark"/>
+
+        <TextView
+            android:id="@+id/tv_go_reg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/c_666666"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/go_reg"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:id="@+id/reg_group">
+
+        <ImageView
+            android:layout_width="@dimen/dp_70"
+            android:layout_height="@dimen/dp_70"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/dp_60"
+            android:src="@mipmap/ic_launcher_round"/>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/reg_name_wrapper"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_20"
+            android:layout_marginRight="@dimen/dp_20"
+            android:layout_marginTop="@dimen/dp_50">
+
+            <EditText
+                android:id="@+id/reg_name"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/username"
+                android:maxLines="1"
+                android:inputType="text"
+                android:maxLength="13"
+                android:ellipsize="end"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/reg_psw_wrapper"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_20"
+            android:layout_marginRight="@dimen/dp_20"
+            android:layout_marginTop="@dimen/dp_20">
+
+            <EditText
+                android:id="@+id/reg_psw"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/psw"
+                android:maxLines="1"
+                android:inputType="textPassword"
+                android:maxLength="13"
+                android:ellipsize="end"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/reg_repsw_wrapper"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_20"
+            android:layout_marginRight="@dimen/dp_20"
+            android:layout_marginTop="@dimen/dp_20">
+
+            <EditText
+                android:id="@+id/reg_repsw"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/repsw"
+                android:maxLines="1"
+                android:inputType="textPassword"
+                android:maxLength="13"
+                android:ellipsize="end"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+        <Button
+            android:id="@+id/btn_reg"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_35"
+            android:layout_margin="@dimen/dp_20"
+            android:text="@string/reg"
+            android:textColor="@color/white"
+            android:background="@color/colorPrimaryDark"/>
+
+        <TextView
+            android:id="@+id/tv_go_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/c_666666"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/go_login"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

@@ -20,4 +20,11 @@
     <string name="know_title">开发环境</string>
     <string name="know_name">Android Studio相关</string>
     <string name="know_article_auther">作者</string>
+    <string name="login">登录</string>
+    <string name="username">用户名</string>
+    <string name="psw">密码</string>
+    <string name="reg">注册</string>
+    <string name="go_login">已有账号？去登录</string>
+    <string name="repsw">密码</string>
+    <string name="go_reg">没有账号?去注册</string>
 </resources>
