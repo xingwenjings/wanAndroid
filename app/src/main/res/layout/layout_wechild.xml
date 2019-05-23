@@ -44,8 +44,8 @@
         android:id="@+id/author"
         android:textColor="@color/c_868282"/>
     <ImageView
-        android:layout_width="@dimen/dp_40"
-        android:layout_height="@dimen/dp_40"
+        android:layout_width="@dimen/dp_25"
+        android:layout_height="@dimen/dp_25"
         android:id="@+id/img"
         android:layout_below="@id/titles"
         android:layout_alignBottom="@id/author"

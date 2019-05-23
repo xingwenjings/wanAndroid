@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.wan_android">
-    <uses-permission android:name="android.permission.INTERNET"/>
+
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".base.BaseApp"
         android:allowBackup="true"
@@ -12,23 +13,33 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.activity.AnimationActivity">
+
+        <activity
+            android:name=".ui.activity.AnimationActivity"
+            android:theme="@style/FullScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.activity.MainActivity" />
-        <activity android:name=".ui.activity.WeChildActivity"></activity>
 
-        <activity android:name=".ui.activity.ParticularActivity"></activity>
-        <activity android:name=".ui.activity.KnowledgeTabActivity"
-            ></activity>
-        <activity android:name=".ui.activity.KnowWebViewActivity"
-            ></activity>
-        <activity android:name=".ui.activity.LoginActivity"
-            ></activity>
+        <activity android:name=".ui.activity.HollZhidingdetailsActivity"></activity>
+        <activity android:name=".ui.activity.HollListdetailsActivity" />
+        <activity android:name=".ui.activity.HollBannerdetailsActivity" />
+        <activity android:name=".ui.activity.MainActivity" />
+        <activity android:name=".ui.activity.WeChatChildActivity" />
+        <activity android:name=".ui.activity.ParticularActivity" />
+        <activity android:name=".ui.activity.KnowledgeTabActivity" />
+        <activity android:name=".ui.activity.KnowWebViewActivity"/>
+        <activity android:name=".ui.activity.LoginActivity" />
+        <activity android:name=".ui.activity.NaviWebViewActivity"/>
+        <activity android:name=".ui.activity.CollectActivity"></activity>
+        <activity android:name=".ui.activity.SettingsActivity"></activity>
+        <activity android:name=".ui.activity.MeActivity"></activity>
+        <activity android:name=".ui.activity.TodoActivity"></activity>
+        <activity android:name=".ui.activity.NightActivity"></activity>
+        
     </application>
 
 </manifest>

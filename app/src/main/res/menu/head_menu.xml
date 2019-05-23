@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/collect"
+        android:checkable="true"
+        android:title="@string/string_collect"
+        android:icon="@drawable/follow_unselected"/>
+    <item android:id="@+id/todo"
+        android:checkable="true"
+        android:title="@string/string_TODO"
+        android:icon="@drawable/icon_todo"/>
+    <item android:id="@+id/night"
+        android:checkable="true"
+        android:title="@string/string_night"
+        android:icon="@drawable/icon_moon"/>
+    <item android:id="@+id/settings"
+        android:checkable="true"
+        android:title="@string/string_settings"
+        android:icon="@drawable/icon_settings"/>
+    <item android:id="@+id/me"
+        android:checkable="true"
+        android:title="@string/string_about_me"
+        android:icon="@drawable/icon_about"/>
+
+
+</menu>

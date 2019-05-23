@@ -5,9 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
     <RelativeLayout
+        android:id="@+id/rela"
         android:layout_marginLeft="@dimen/dp_5"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
         <RelativeLayout
             android:id="@+id/re"
             android:visibility="visible"
@@ -54,7 +55,8 @@
             android:id="@+id/neirong"
             android:textSize="@dimen/sp_16"
             android:text="@string/fgh_text_loading"
-            android:layout_marginLeft="@dimen/dp_10"
+            android:layout_marginLeft="@dimen/dp_5"
+            android:layout_marginRight="@dimen/dp_10"
             android:layout_marginTop="@dimen/dp_40"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
@@ -72,13 +74,14 @@
             android:layout_alignParentRight="true"
             android:layout_width="@dimen/dp_23"
             android:layout_marginTop="@dimen/dp_55"
-            android:layout_below="@+id/riqi"
+            android:layout_alignBottom="@id/biaoti"
             android:layout_marginRight="@dimen/dp_20"
             android:layout_height="@dimen/dp_23" />
     </RelativeLayout>
     <View
         android:layout_width="match_parent"
-        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/rela"
+        android:layout_marginTop="@dimen/dp_10"
         android:background="@color/c_0ffa2613"
         android:layout_height="@dimen/dp_1"/>
 </RelativeLayout>
