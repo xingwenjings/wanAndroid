@@ -12,6 +12,9 @@
         android:layout_gravity="left"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:id="@+id/na"
+        app:headerLayout="@layout/layout_header"
+        app:menu="@menu/head_menu"
         ></android.support.design.widget.NavigationView>
 
 </android.support.v4.widget.DrawerLayout>
