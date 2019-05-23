@@ -31,6 +31,8 @@ public interface Constants {
     String PHONE = "phone";
     String TYPE="type";
     String VERIFY_CODE = "verify_code";
+    String URL = "url";
+    String TITLE = "title";
     int SUCCESS_CODE = 0;
     String LINK = "link";
     String NAME = "name";

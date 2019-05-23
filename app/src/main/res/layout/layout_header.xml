@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@color/colorAccent"
+    android:layout_height="@dimen/dp_180">
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/logo"
+        android:id="@+id/login_img"
+        android:layout_centerInParent="true"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="登录"
+        android:id="@+id/login"
+        android:layout_below="@id/login_img"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="@dimen/dp_10"
+        android:textSize="@dimen/sp_14"
+        android:textColor="@color/c_ffffff"/>
+</RelativeLayout>

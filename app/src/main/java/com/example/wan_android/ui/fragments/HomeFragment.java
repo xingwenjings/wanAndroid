@@ -1,6 +1,7 @@
 package com.example.wan_android.ui.fragments;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -14,10 +15,13 @@ import android.widget.LinearLayout;
 import com.example.wan_android.Adapet.HollAdapet;
 import com.example.wan_android.R;
 import com.example.wan_android.base.BaseFragment;
+import com.example.wan_android.base.Constants;
 import com.example.wan_android.bean.HollBannerbean;
 import com.example.wan_android.bean.HollListbean;
 import com.example.wan_android.bean.HollZhidingbean;
 import com.example.wan_android.presenter.HollPresenter;
+import com.example.wan_android.ui.activity.HollListdetailsActivity;
+import com.example.wan_android.ui.activity.HollZhidingdetailsActivity;
 import com.example.wan_android.util.Logger;
 import com.example.wan_android.view.HollView;
 import com.google.gson.Gson;
@@ -32,6 +36,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import retrofit2.http.POST;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -94,7 +99,28 @@ public class HomeFragment extends BaseFragment<HollView, HollPresenter> implemen
                 mSmart.finishLoadMore();
             }
         });
+    }
 
+    @Override
+    protected void initListener() {
+        mhollAdapet.setOnItemClickListener(new HollAdapet.OnItemClickListener() {
+            @Override
+            public void OnItemClick(View v, int position) {
+                Intent intent = new Intent(getContext(), HollZhidingdetailsActivity.class);
+                intent.putExtra(Constants.TITLE,mhollZhiding.get(position).getTitle());
+                intent.putExtra(Constants.URL,mhollZhiding.get(position).getLink());
+                getContext().startActivity(intent);
+            }
+        });
+        mhollAdapet.setOnListItemClickListener(new HollAdapet.OnItemClickListener() {
+            @Override
+            public void OnItemClick(View v, int position) {
+                Intent intent = new Intent(getContext(), HollListdetailsActivity.class);
+                intent.putExtra(Constants.TITLE,mholllist.get(position).getTitle());
+                intent.putExtra(Constants.URL,mholllist.get(position).getLink());
+                getContext().startActivity(intent);
+            }
+        });
     }
 
     @Override

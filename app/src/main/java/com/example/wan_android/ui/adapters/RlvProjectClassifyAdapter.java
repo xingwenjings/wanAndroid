@@ -25,6 +25,7 @@ public class RlvProjectClassifyAdapter extends RecyclerView.Adapter {
     private FragmentActivity mContext;
     private ArrayList<ListBean.DataBean.DatasBean> mList;
     private OnItemClickListener mListener;
+    private ProjectViewHolder mViewHolders;
 
     public RlvProjectClassifyAdapter(FragmentActivity activity, ArrayList<ListBean.DataBean.DatasBean> list) {
         this.mContext = activity;
@@ -39,8 +40,8 @@ public class RlvProjectClassifyAdapter extends RecyclerView.Adapter {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, final int i) {
-        ProjectViewHolder viewHolders = (ProjectViewHolder) viewHolder;
+    public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder viewHolder, final int i) {
+        mViewHolders = (ProjectViewHolder) viewHolder;
         ListBean.DataBean.DatasBean datasBean = mList.get(i);
         String envelopePic = datasBean.getEnvelopePic();
         String title = datasBean.getTitle();
@@ -48,17 +49,27 @@ public class RlvProjectClassifyAdapter extends RecyclerView.Adapter {
         String author = datasBean.getAuthor();
         String niceDate = datasBean.getNiceDate();
 
-        GlideUtil.loadUrlImage(R.mipmap.ic_launcher, R.mipmap.ic_launcher, envelopePic, viewHolders.mIv, mContext);
-        viewHolders.mTitles.setText(title);
-        viewHolders.mSizetitle.setText(desc);
-        viewHolders.mYingwen.setText(author);
-        viewHolders.mTime.setText(niceDate);
+        GlideUtil.loadUrlImage(R.mipmap.zhanweitu, R.mipmap.zhanweitu, envelopePic, mViewHolders.mIv, mContext);
+        mViewHolders.mTitles.setText(title);
+        mViewHolders.mSizetitle.setText(desc);
+        mViewHolders.mYingwen.setText(author);
+        mViewHolders.mTime.setText(niceDate);
 
-        viewHolders.itemView.setOnClickListener(new View.OnClickListener() {
+        mViewHolders.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (mListener != null) {
                     mListener.onItemClick(v, i);
+                }
+            }
+        });
+        mViewHolders.mCollect.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (mViewHolders.mCollect !=null){
+                    mViewHolders.mCollect.setImageResource(R.mipmap.follow_unselected);
+                }else {
+                    mViewHolders.mCollect.setImageResource(R.mipmap.follow);
                 }
             }
         });

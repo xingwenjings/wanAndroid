@@ -5,11 +5,11 @@ import android.os.Bundle;
 
 import com.example.wan_android.R;
 
-public class WeChildActivity extends AppCompatActivity {
+public class CollectActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_we_child);
+        setContentView(R.layout.activity_collect);
     }
 }

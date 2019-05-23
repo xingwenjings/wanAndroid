@@ -72,7 +72,7 @@ public class NaviWebViewActivity extends BaseActivity<EmptyView, EmptyPresenter>
         mToolbar.setTitle("");
         setSupportActionBar(mToolbar);
         mTvTitle.setSelected(true);
-        mTvTitle.setText(UIUtils.getString(R.string.to_load));
+        mTvTitle.setText(UIUtils.getString(R.string.loade));
 
         ChromeClientCallbackManager.ReceivedTitleCallback mCallback;
         mCallback = null;
