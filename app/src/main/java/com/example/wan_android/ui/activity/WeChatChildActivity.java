@@ -1,6 +1,7 @@
 package com.example.wan_android.ui.activity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.v7.widget.Toolbar;
@@ -17,7 +18,10 @@ import android.widget.TextView;
 
 import com.example.wan_android.R;
 import com.example.wan_android.base.BaseActivity;
+import com.example.wan_android.base.Constants;
 import com.example.wan_android.presenter.EmptyPresenter;
+import com.example.wan_android.util.ShareUtil;
+import com.example.wan_android.util.UIUtils;
 import com.example.wan_android.view.EmptyView;
 import com.jaeger.library.StatusBarUtil;
 
@@ -28,6 +32,8 @@ import java.net.URL;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
+
 //邢文静   webview
 public class WeChatChildActivity extends BaseActivity<EmptyView, EmptyPresenter> implements EmptyView {
 
@@ -58,11 +64,13 @@ public class WeChatChildActivity extends BaseActivity<EmptyView, EmptyPresenter>
 
     @Override
     protected void initView() {
-        url = getIntent().getStringExtra("link");
-        name = getIntent().getStringExtra("name");
-        tvTitle.setText(name);
+        url = getIntent().getStringExtra(Constants.LINK);
+        name = getIntent().getStringExtra(Constants.NAME);
+
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
+        tvTitle.setSelected(true);
+        tvTitle.setText(UIUtils.getString(R.string.loade));
         ChromeClientCallbackManager.ReceivedTitleCallback mCallback;
         mCallback = null;
         mAgentWeb = AgentWeb.with(this)
@@ -105,12 +113,30 @@ public class WeChatChildActivity extends BaseActivity<EmptyView, EmptyPresenter>
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case 1:
+                ShareUtil.shareText(this, "玩Android分享\n 【" + name + "】 ：\n" + url
+                        , "");
                 break;
             case 2:
                 break;
             case 3:
+                getBrowser();
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    /**
+     * 调用系统浏览器
+     */
+    private void getBrowser() {
+        Intent intent = new Intent();
+        intent.setAction("android.intent.action.VIEW");
+        Uri content_url = Uri.parse(url);
+        intent.setData(content_url);
+        startActivity(intent);
+    }
+    @OnClick(R.id.img)
+    public void onClick() {
+        finish();
     }
 }

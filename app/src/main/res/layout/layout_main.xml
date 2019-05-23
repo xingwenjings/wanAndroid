@@ -1,42 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-    <android.support.v7.widget.Toolbar
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_44"
-        android:id="@+id/toolbar"
-        android:background="@color/colorAccent"
-        >
+    android:layout_height="match_parent">
 
-    </android.support.v7.widget.Toolbar>
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="false">
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_44"
+            android:background="@color/colorAccent"
+            app:layout_scrollFlags="scroll|enterAlways"></android.support.v7.widget.Toolbar>
+    </android.support.design.widget.AppBarLayout>
+
     <FrameLayout
+        android:id="@+id/main_fl"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/main_fl"
         android:layout_above="@id/tab"
         android:layout_below="@id/toolbar"></FrameLayout>
-    <android.support.design.widget.FloatingActionButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/fab"
-        android:src="@drawable/right_arrow"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginBottom="@dimen/dp_70"
-        android:layout_marginRight="@dimen/dp_20"
-        android:backgroundTint="@color/colorAccent"
-        app:elevation="8dp"
-        app:rippleColor="@color/c_cecece"
-        />
-    <android.support.design.widget.TabLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_55"
-        android:layout_alignParentBottom="true"
-        app:tabMode="fixed"
-        android:id="@+id/tab"
-        app:tabIndicatorHeight="@dimen/dp_0"
-        ></android.support.design.widget.TabLayout>
 
-</RelativeLayout>
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/dp_55"
+        android:layout_gravity="bottom|right"
+        android:layout_marginRight="@dimen/dp_16"
+        android:layout_marginBottom="@dimen/dp_70"
+        android:src="@mipmap/icon_up_arrow"
+        app:backgroundTint="@color/colorAccent"
+        app:layout_behavior="com.example.wan_android.widght.ScaleDownShowBehavior" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="com.example.wan_android.widght.BottomNavigationBehavior">
+
+        <android.support.design.widget.TabLayout
+            android:background="@color/c_ffffff"
+            android:id="@+id/tab"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_55"
+            android:layout_alignParentBottom="true"
+            app:tabIndicatorHeight="@dimen/dp_0"
+            app:tabMode="fixed"></android.support.design.widget.TabLayout>
+    </RelativeLayout>
+
+</android.support.design.widget.CoordinatorLayout>

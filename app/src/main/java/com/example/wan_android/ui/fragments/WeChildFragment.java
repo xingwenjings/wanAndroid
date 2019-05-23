@@ -10,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 
 import com.example.wan_android.R;
 import com.example.wan_android.base.BaseFragment;
+import com.example.wan_android.base.Constants;
 import com.example.wan_android.bean.WeChildBean;
 import com.example.wan_android.presenter.WeChildPresenter;
 import com.example.wan_android.ui.activity.WeChatChildActivity;
@@ -72,8 +73,8 @@ public class WeChildFragment extends BaseFragment<WeChildView, WeChildPresenter>
             @Override
             public void OnClickItem(WeChildBean.DataBean.DatasBean datasBean, int position) {
                 Intent intent = new Intent(getContext(), WeChatChildActivity.class);
-                intent.putExtra("link",datasBeans.get(position).getLink());
-                intent.putExtra("name",datasBeans.get(position).getChapterName());
+                intent.putExtra(Constants.LINK,datasBeans.get(position).getLink());
+                intent.putExtra(Constants.NAME,datasBeans.get(position).getChapterName());
                 startActivity(intent);
             }
         });
