@@ -151,48 +151,8 @@ public class MainActivity extends BaseActivity<EmptyView, EmptyPresenter> implem
                 return false;
             }
         });
-<<<<<<< HEAD
-        tool_img.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, SearchActivity.class);
-                startActivity(intent);
-            }
-        });
-
     }
 
-    private void tanChuang() {
-        alertDialog2 = new AlertDialog.Builder(this)
-                .setTitle("确认要退出登录？")
-                .setIcon(R.mipmap.ic_launcher)
-                .setPositiveButton("确定", new DialogInterface.OnClickListener() {//添加"Yes"按钮
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        SharedPreferences projectDemo = getSharedPreferences("projectDemo", MODE_PRIVATE);
-                        SharedPreferences.Editor edit = projectDemo.edit();
-                        edit.putBoolean(Constants.LOGIN, false);
-                        edit.commit();
-                        tvLogin.setText("登录");
-
-                    }
-                })
-                .setNegativeButton("取消", new DialogInterface.OnClickListener() {//添加取消
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        alertDialog2.dismiss();
-                    }
-                })
-                .create();
-        alertDialog2.show();
-    }
-
-    private void initNight() {
-        Toast.makeText(this, "夜间模式", Toast.LENGTH_SHORT).show();
-        UIModeUtil.changeModeUI(MainActivity.this);
-=======
->>>>>>> 3b02005faa208a6b5c8f80f1336689d849eb8059
-    }
 
     private void initTitles() {
         tab.addTab(tab.newTab().setText(R.string.home).setIcon(R.drawable.select_home));
@@ -231,10 +191,6 @@ public class MainActivity extends BaseActivity<EmptyView, EmptyPresenter> implem
                         switchFragment(TYPE_KNOWLEDGE);
                         break;
                     case 2:
-<<<<<<< HEAD
-
-=======
->>>>>>> 3b02005faa208a6b5c8f80f1336689d849eb8059
                         tv.setText(R.string.wechat);
                         switchFragment(TYPE_WECHAT);
                         break;
@@ -247,6 +203,7 @@ public class MainActivity extends BaseActivity<EmptyView, EmptyPresenter> implem
                         switchFragment(TYPE_PROJECT);
                         break;
                 }
+
 
             }
 
@@ -272,27 +229,9 @@ public class MainActivity extends BaseActivity<EmptyView, EmptyPresenter> implem
         transaction.hide(fragments.get(mLastFragmentPosition));
         transaction.show(fragment);
         transaction.commit();
-<<<<<<< HEAD
-
         mLastFragmentPosition = position;
 
-    }
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-
-            case R.id.tv_login:
-                if (tvLogin.getText().toString().trim().equals("登录"))
-                    startActivityForResult(new Intent(this, LoginActivity.class), 100);
-                break;
-            case R.id.fab:
-                mainFl.scrollBy(0, 0);
-                break;
-
-=======
         mLastFragmentPosition = position;
-
     }
 
     @Override
@@ -308,10 +247,10 @@ public class MainActivity extends BaseActivity<EmptyView, EmptyPresenter> implem
             case R.id.tool_img:
                 startActivity(new Intent(this,SearchActivity.class));
                 break;
->>>>>>> 3b02005faa208a6b5c8f80f1336689d849eb8059
         }
     }
 
+     
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -319,9 +258,6 @@ public class MainActivity extends BaseActivity<EmptyView, EmptyPresenter> implem
             tvLogin.setText((String) SpUtil.getParam(Constants.USERNAME, "登录"));
         }
     }
-<<<<<<< HEAD
-=======
 
 
->>>>>>> 3b02005faa208a6b5c8f80f1336689d849eb8059
 }
