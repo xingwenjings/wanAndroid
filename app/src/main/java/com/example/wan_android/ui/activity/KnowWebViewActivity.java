@@ -17,10 +17,13 @@ import android.widget.TextView;
 import com.example.wan_android.R;
 import com.example.wan_android.base.BaseActivity;
 import com.example.wan_android.base.Constants;
+import com.example.wan_android.bean.ZWBean;
 import com.example.wan_android.presenter.EmptyPresenter;
+import com.example.wan_android.presenter.KnowZWPresenter;
 import com.example.wan_android.util.ShareUtil;
 import com.example.wan_android.util.SpUtil;
 import com.example.wan_android.view.EmptyView;
+import com.example.wan_android.view.KnowZWView;
 import com.just.library.AgentWeb;
 import com.just.library.ChromeClientCallbackManager;
 
@@ -28,7 +31,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 //马佳雪 用AgentWeb加载页面
-public class KnowWebViewActivity extends BaseActivity<EmptyView, EmptyPresenter> implements EmptyView, View.OnClickListener {
+public class KnowWebViewActivity extends BaseActivity<KnowZWView, KnowZWPresenter> implements KnowZWView, View.OnClickListener {
     @BindView(R.id.img)
     ImageView img;
     @BindView(R.id.tv_title)
@@ -43,8 +46,8 @@ public class KnowWebViewActivity extends BaseActivity<EmptyView, EmptyPresenter>
     private AgentWeb mAgentWeb;
 
     @Override
-    protected EmptyPresenter initPresenter() {
-        return new EmptyPresenter();
+    protected KnowZWPresenter initPresenter() {
+        return new KnowZWPresenter();
     }
 
     @Override
@@ -136,5 +139,15 @@ public class KnowWebViewActivity extends BaseActivity<EmptyView, EmptyPresenter>
     protected void onDestroy() {
         mAgentWeb.getWebLifeCycle().onDestroy();
         super.onDestroy();
+    }
+
+    @Override
+    public void onSuccess(ZWBean bean) {
+
+    }
+
+    @Override
+    public void onFail(String msg) {
+
     }
 }

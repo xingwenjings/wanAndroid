@@ -180,8 +180,12 @@ public class MainActivity extends BaseActivity<EmptyView, EmptyPresenter> implem
                 .setPositiveButton("确定", new DialogInterface.OnClickListener() {//添加"Yes"按钮
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        SpUtil.setParam(Constants.LOGIN, false);
+                        SharedPreferences projectDemo = getSharedPreferences("projectDemo", MODE_PRIVATE);
+                        SharedPreferences.Editor edit = projectDemo.edit();
+                        edit.putBoolean(Constants.LOGIN, false);
+                        edit.commit();
                         tvLogin.setText("登录");
+
                     }
                 })
                 .setNegativeButton("取消", new DialogInterface.OnClickListener() {//添加取消
@@ -209,9 +213,6 @@ public class MainActivity extends BaseActivity<EmptyView, EmptyPresenter> implem
 
     private void initFragment() {
         mManager = getSupportFragmentManager();
-
-
-        mManager = getSupportFragmentManager();
         fragments = new ArrayList<>();
         fragments.add(new HomeFragment());
         fragments.add(new KnowLedgeFragment());
@@ -230,78 +231,78 @@ public class MainActivity extends BaseActivity<EmptyView, EmptyPresenter> implem
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 switch (tab.getPosition()) {
-                        case 0:
-                            tv.setText(R.string.play);
-                            switchFragment(TYPE_HOME);
-                            break;
-                        case 1:
-                            tv.setText(R.string.knowledge);
-                            switchFragment(TYPE_KNOWLEDGE);
-                            break;
-                        case 2:
+                    case 0:
+                        tv.setText(R.string.play);
+                        switchFragment(TYPE_HOME);
+                        break;
+                    case 1:
+                        tv.setText(R.string.knowledge);
+                        switchFragment(TYPE_KNOWLEDGE);
+                        break;
+                    case 2:
 
-                            tv.setText(R.string.wechat);
-                            switchFragment(TYPE_WECHAT);
-                            break;
-                        case 3:
-                            tv.setText(R.string.navigation);
-                            switchFragment(TYPE_NAVIGATION);
-                            break;
-                        case 4:
-                            tv.setText(R.string.project);
-                            switchFragment(TYPE_PROJECT);
-                            break;
-                    }
-
+                        tv.setText(R.string.wechat);
+                        switchFragment(TYPE_WECHAT);
+                        break;
+                    case 3:
+                        tv.setText(R.string.navigation);
+                        switchFragment(TYPE_NAVIGATION);
+                        break;
+                    case 4:
+                        tv.setText(R.string.project);
+                        switchFragment(TYPE_PROJECT);
+                        break;
                 }
 
-                @Override
-                public void onTabUnselected (TabLayout.Tab tab){
-
-                }
-
-                @Override
-                public void onTabReselected (TabLayout.Tab tab){
-
-                }
-            });
-
-        }
-
-        private void switchFragment ( int position){
-            FragmentTransaction transaction = mManager.beginTransaction();
-            BaseFragment fragment = fragments.get(position);
-            if (!fragment.isAdded()) {
-                transaction.add(R.id.main_fl, fragment);
             }
-            transaction.hide(fragments.get(mLastFragmentPosition));
-            transaction.show(fragment);
-            transaction.commit();
 
-            mLastFragmentPosition = position;
-
-        }
-
-        @Override
-        public void onClick (View v){
-            switch (v.getId()) {
-
-                case R.id.tv_login:
-                    if (tvLogin.getText().toString().trim().equals("登录"))
-                        startActivityForResult(new Intent(this, LoginActivity.class), 100);
-                    break;
-                case R.id.fab:
-                    mainFl.scrollBy(0, 0);
-                    break;
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
 
             }
-        }
 
-        @Override
-        protected void onActivityResult ( int requestCode, int resultCode, @Nullable Intent data){
-            super.onActivityResult(requestCode, resultCode, data);
-            if (requestCode == 100 && resultCode == KnowledgeApi.SUCCESS_CODE) {
-                tvLogin.setText((String) SpUtil.getParam(Constants.USERNAME, "登录"));
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
             }
+        });
+
+    }
+
+    private void switchFragment(int position) {
+        FragmentTransaction transaction = mManager.beginTransaction();
+        BaseFragment fragment = fragments.get(position);
+        if (!fragment.isAdded()) {
+            transaction.add(R.id.main_fl, fragment);
+        }
+        transaction.hide(fragments.get(mLastFragmentPosition));
+        transaction.show(fragment);
+        transaction.commit();
+
+        mLastFragmentPosition = position;
+
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+
+            case R.id.tv_login:
+                if (tvLogin.getText().toString().trim().equals("登录"))
+                    startActivityForResult(new Intent(this, LoginActivity.class), 100);
+                break;
+            case R.id.fab:
+                mainFl.scrollBy(0, 0);
+                break;
+
         }
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 100 && resultCode == KnowledgeApi.SUCCESS_CODE) {
+            tvLogin.setText((String) SpUtil.getParam(Constants.USERNAME, "登录"));
+        }
+    }
+}
