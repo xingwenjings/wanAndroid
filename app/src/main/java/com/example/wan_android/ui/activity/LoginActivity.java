@@ -99,7 +99,6 @@ public class LoginActivity extends BaseActivity<LoginView, LoginPresenter> imple
                 if (!TextUtils.isEmpty(name) && !TextUtils.isEmpty(psw)) {
                     mPresenter.login(name, psw);
                     showLoading();
-               
                 } else {
                     ToastUtil.showShort("用户名或密码不能为空");
                 }
