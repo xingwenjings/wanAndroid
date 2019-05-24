@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
 import com.example.wan_android.R;
 import com.example.wan_android.base.BaseActivity;
 import com.example.wan_android.base.Constants;
@@ -68,7 +69,7 @@ public class LoginActivity extends BaseActivity<LoginView, LoginPresenter> imple
     @Override
     public void onSuccess(LoginInfo bean) {
         hideLoading();
-        //±£´æÓÃ»§ĞÅÏ¢£¬²¢½«µÇÂ¼×´Ì¬±ê¼ÇÎªÒÑµÇÂ¼
+        //ä¿å­˜ç”¨æˆ·ä¿¡æ¯ï¼Œå¹¶å°†ç™»å½•çŠ¶æ€æ ‡è®°ä¸ºå·²ç™»å½•
         SpUtil.setParam(Constants.USERNAME, bean.getData().getUsername());
         SpUtil.setParam(Constants.TOKEN, bean.getData().getId());
         SpUtil.setParam(Constants.LOGIN, true);
@@ -80,6 +81,7 @@ public class LoginActivity extends BaseActivity<LoginView, LoginPresenter> imple
     public void onFail(String msg) {
 
     }
+
     @OnClick({R.id.btn_login, R.id.tv_go_reg, R.id.btn_reg, R.id.tv_go_login})
     public void onClick(View v) {
         switch (v.getId()) {
@@ -88,12 +90,12 @@ public class LoginActivity extends BaseActivity<LoginView, LoginPresenter> imple
             case R.id.btn_login:
                 String name = mEtName.getText().toString().trim();
                 String psw = mEtPsw.getText().toString().trim();
-                if (!TextUtils.isEmpty(name) && !TextUtils.isEmpty(psw)){
-                    mPresenter.login(name,psw);
+                if (!TextUtils.isEmpty(name) && !TextUtils.isEmpty(psw)) {
+                    mPresenter.login(name, psw);
 
                     showLoading();
-                }else {
-                    ToastUtil.showShort("ÓÃ»§Ãû»òÃÜÂë²»ÄÜÎª¿Õ");
+                } else {
+                    ToastUtil.showShort("ç”¨æˆ·åæˆ–å¯†ç ä¸èƒ½ä¸ºç©º");
                 }
                 break;
             case R.id.tv_go_reg:
@@ -104,15 +106,15 @@ public class LoginActivity extends BaseActivity<LoginView, LoginPresenter> imple
                 String regName = mRegName.getText().toString().trim();
                 String regPsw = mRegPsw.getText().toString().trim();
                 String regRepsw = mRegRepsw.getText().toString().trim();
-                if (!TextUtils.isEmpty(regName) && !TextUtils.isEmpty(regPsw)){
-                    if (regPsw.equals(regRepsw)){
-                        mPresenter.register(regName,regPsw,regRepsw);
+                if (!TextUtils.isEmpty(regName) && !TextUtils.isEmpty(regPsw)) {
+                    if (regPsw.equals(regRepsw)) {
+                        mPresenter.register(regName, regPsw, regRepsw);
                         showLoading();
-                    }else {
-                        ToastUtil.showShort("Á½´ÎÃÜÂëÊäÈë²»Ò»ÖÂ£¬ÇëÖØĞÂÊäÈë");
+                    } else {
+                        ToastUtil.showShort("ä¸¤æ¬¡å¯†ç è¾“å…¥ä¸ä¸€è‡´ï¼Œè¯·é‡æ–°è¾“å…¥");
                     }
-                }else {
-                    ToastUtil.showShort("ÓÃ»§Ãû»òÃÜÂë²»ÄÜÎª¿Õ");
+                } else {
+                    ToastUtil.showShort("ç”¨æˆ·åæˆ–å¯†ç ä¸èƒ½ä¸ºç©º");
                 }
                 break;
             case R.id.tv_go_login:

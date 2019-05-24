@@ -1,6 +1,9 @@
 package com.example.wan_android.ui.activity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -21,6 +24,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.TextView;
+
 import com.example.wan_android.R;
 import com.example.wan_android.base.BaseActivity;
 import com.example.wan_android.base.BaseFragment;
@@ -58,12 +62,12 @@ public class MainActivity extends BaseActivity<EmptyView, EmptyPresenter> implem
     private FragmentManager mManager;
     private int mLastFragmentPosition = 0;
     private TextView tvLogin;
-    private final int TYPE_HOME=0;
-    private final int TYPE_KNOWLEDGE=1;
-    private final int TYPE_WECHAT=2;
-    private final int TYPE_NAVIGATION=3;
-    private final int TYPE_PROJECT=4;
-
+    private final int TYPE_HOME = 0;
+    private final int TYPE_KNOWLEDGE = 1;
+    private final int TYPE_WECHAT = 2;
+    private final int TYPE_NAVIGATION = 3;
+    private final int TYPE_PROJECT = 4;
+    private AlertDialog alertDialog2;
 
 
     @Override
@@ -78,7 +82,7 @@ public class MainActivity extends BaseActivity<EmptyView, EmptyPresenter> implem
 
     @Override
     protected void initView() {
-        fragments=new ArrayList<>();
+        fragments = new ArrayList<>();
         //设置toolbar功能
         toolbar.setTitle(R.string.play);
         toolbar.setNavigationIcon(null);
@@ -101,7 +105,7 @@ public class MainActivity extends BaseActivity<EmptyView, EmptyPresenter> implem
     private void initNav() {
         //解决侧滑菜单图标不显示问题
         nav.setItemIconTintList(null);
-        
+
     }
 
     @Override
@@ -115,26 +119,53 @@ public class MainActivity extends BaseActivity<EmptyView, EmptyPresenter> implem
         nav.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                switch (menuItem.getItemId()){
+                switch (menuItem.getItemId()) {
                     case R.id.collect:
-                        startActivity(new Intent(MainActivity.this,CollectActivity.class));
+                        startActivity(new Intent(MainActivity.this, CollectActivity.class));
                         break;
                     case R.id.settings:
-                        startActivity(new Intent(MainActivity.this,SettingsActivity.class));
+                        startActivity(new Intent(MainActivity.this, SettingsActivity.class));
                         break;
                     case R.id.night:
-                        startActivity(new Intent(MainActivity.this,NightActivity.class));
+                        startActivity(new Intent(MainActivity.this, NightActivity.class));
                         break;
                     case R.id.todo:
-                        startActivity(new Intent(MainActivity.this,TodoActivity.class));
+                        startActivity(new Intent(MainActivity.this, TodoActivity.class));
                         break;
                     case R.id.me:
-                        startActivity(new Intent(MainActivity.this,MeActivity.class));
+                        startActivity(new Intent(MainActivity.this, MeActivity.class));
+                        break;
+                    case R.id.unLogin:
+                        if ((boolean) SpUtil.getParam(Constants.LOGIN, true)){
+                            tanChuang();
+                        }else {
+                        }
                         break;
                 }
                 return false;
             }
         });
+    }
+
+    private void tanChuang() {
+          alertDialog2 = new AlertDialog.Builder(this)
+                .setTitle("确认要退出登录？")
+                .setIcon(R.mipmap.ic_launcher)
+                .setPositiveButton("确定", new DialogInterface.OnClickListener() {//添加"Yes"按钮
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        SpUtil.setParam(Constants.LOGIN,false);
+                        tvLogin.setText("登录");
+                    }
+                })
+                .setNegativeButton("取消", new DialogInterface.OnClickListener() {//添加取消
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        alertDialog2.dismiss();
+                    }
+                })
+                .create();
+        alertDialog2.show();
     }
 
     private void initTitles() {
@@ -146,7 +177,7 @@ public class MainActivity extends BaseActivity<EmptyView, EmptyPresenter> implem
     }
 
     private void initFragment() {
-        mManager=getSupportFragmentManager();
+        mManager = getSupportFragmentManager();
         fragments = new ArrayList<>();
         fragments.add(new HomeFragment());
         fragments.add(new KnowLedgeFragment());
@@ -155,7 +186,7 @@ public class MainActivity extends BaseActivity<EmptyView, EmptyPresenter> implem
         fragments.add(new ProjectFragment());
 
         FragmentTransaction fragmentTransaction = mManager.beginTransaction();
-        fragmentTransaction.add(R.id.main_fl,fragments.get(0));
+        fragmentTransaction.add(R.id.main_fl, fragments.get(0));
         fragmentTransaction.commit();
     }
 
@@ -164,7 +195,7 @@ public class MainActivity extends BaseActivity<EmptyView, EmptyPresenter> implem
         tab.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-                switch (tab.getPosition()){
+                switch (tab.getPosition()) {
                     case 0:
                         toolbar.setTitle(R.string.play);
                         switchFragment(TYPE_HOME);
@@ -217,16 +248,17 @@ public class MainActivity extends BaseActivity<EmptyView, EmptyPresenter> implem
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.tv_login:
                 if (tvLogin.getText().toString().trim().equals("登录"))
                     startActivityForResult(new Intent(this, LoginActivity.class), 100);
                 break;
             case R.id.fab:
-                mainFl.scrollBy(0,0);
+                mainFl.scrollBy(0, 0);
                 break;
         }
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

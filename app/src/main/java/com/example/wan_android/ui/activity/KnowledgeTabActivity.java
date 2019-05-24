@@ -18,6 +18,7 @@ import com.example.wan_android.bean.KnowledgeBean;
 import com.example.wan_android.presenter.KnowledgePresenter;
 import com.example.wan_android.ui.adapters.KnowPagerAdapter;
 import com.example.wan_android.ui.fragments.KnowChildFragment;
+import com.example.wan_android.util.ShareUtil;
 import com.example.wan_android.view.KnowledgeView;
 
 import java.util.ArrayList;
@@ -111,6 +112,8 @@ public class KnowledgeTabActivity extends BaseActivity<KnowledgeView, KnowledgeP
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case 100:
+                ShareUtil.shareText(this, "玩Android分享\n 【" + "" + "】 ：\n" + ""
+                        , "");
                 break;
         }
         return super.onOptionsItemSelected(item);

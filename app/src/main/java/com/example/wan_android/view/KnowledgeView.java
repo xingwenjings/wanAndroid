@@ -5,7 +5,7 @@ import com.example.wan_android.bean.KnowledgeBean;
 
 import java.util.List;
 
-public interface KnowledgeView extends BaseMvpView{
+public interface KnowledgeView extends BaseMvpView {
     void onSuccess(List<KnowledgeBean.DataBean> data);
 
     void onFail(String msg);
