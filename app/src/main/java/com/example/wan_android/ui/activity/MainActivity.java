@@ -154,6 +154,7 @@ public class MainActivity extends BaseActivity<EmptyView, EmptyPresenter> implem
         });
     }
 
+
     private void initTitles() {
         tab.addTab(tab.newTab().setText(R.string.home).setIcon(R.drawable.select_home));
         tab.addTab(tab.newTab().setText(R.string.knowledge).setIcon(R.drawable.select_knowledge));
@@ -204,6 +205,7 @@ public class MainActivity extends BaseActivity<EmptyView, EmptyPresenter> implem
                         break;
                 }
 
+
             }
 
             @Override
@@ -230,6 +232,7 @@ public class MainActivity extends BaseActivity<EmptyView, EmptyPresenter> implem
         transaction.commit();
         mLastFragmentPosition = position;
 
+        mLastFragmentPosition = position;
     }
 
     @Override
@@ -248,6 +251,7 @@ public class MainActivity extends BaseActivity<EmptyView, EmptyPresenter> implem
         }
     }
 
+     
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

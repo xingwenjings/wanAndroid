@@ -68,4 +68,19 @@
 </string>
     <string name="about_sites_content_six">\t\t本软件开源，如果你发现任何错误，不要犹豫，
     马上点击GitHub，在上面发起issue或者提交pullrequest</string>
+
+    <!--setting-->
+    <string name="setting_clear">清理缓存</string>
+    <string name="setting_normal">基本设置</string>
+    <string name="setting_cache">是否显示首页置顶文章</string>
+    <string name="setting_image">无图模式</string>
+    <string name="setting_feedback">主题颜色</string>
+    <string name="setting_other">其他设置</string>
+    <string name="setting_night">自动切换夜间模式</string>
+    <string name="navigation_color">导航栏颜色</string>
+    <string name="setting_about">关于</string>
+    <string name="setting_code">版本</string>
+    <string name="setting_log">更新日志</string>
+    <string name="setting_yuan">源代码</string>
+    <string name="setting_shen">版本声明</string>
 </resources>

@@ -2,10 +2,16 @@ package com.example.wan_android.net;
 
 import com.example.wan_android.bean.SearchBean;
 import com.example.wan_android.bean.WeChatBean;
+import com.example.wan_android.bean.WeChatCollectBean;
+import com.example.wan_android.bean.WeChatOutsideBean;
 import com.example.wan_android.bean.WeChildBean;
 
 import io.reactivex.Observable;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
+import retrofit2.http.POST;
 import retrofit2.http.Path;
 
 public interface PlaySeriver {
@@ -29,4 +35,19 @@ public interface PlaySeriver {
     String api_shou = "http://www.wanandroid.com///hotkey/";
     @GET("json")
     Observable<SearchBean> getSearch();
+
+
+    /**
+     * 收藏
+     * @param userName
+     * @param password
+     * @param id
+     * @return
+     */
+    @POST("lg/collect/{id}/json")
+    Observable<WeChatCollectBean> setCollect(@Header("Cookie") String userName,
+                                             @Header("Cookie") String password,
+                                             @Path("id") int id);
+
+
 }
