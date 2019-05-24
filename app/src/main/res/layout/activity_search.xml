@@ -141,7 +141,7 @@
                     android:layout_below="@id/shou_tv"
                     android:layout_marginTop="10dp"
                     android:gravity="center_horizontal"
-                    android:text="💩快来搜点干货吧🐮"
+                    android:text="快来搜点干货吧"
                     android:textSize="@dimen/sp_16" />
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/rlv"

@@ -14,14 +14,19 @@ import android.widget.TextView;
 import com.example.wan_android.R;
 import com.example.wan_android.base.BaseActivity;
 import com.example.wan_android.base.Constants;
+import com.example.wan_android.bean.SetCollectBean;
 import com.example.wan_android.presenter.EmptyPresenter;
+import com.example.wan_android.presenter.SetCollectPresenter;
+import com.example.wan_android.util.SpUtil;
+import com.example.wan_android.util.ToastUtil;
 import com.example.wan_android.view.EmptyView;
+import com.example.wan_android.view.SetCollectView;
 import com.just.library.AgentWeb;
 import com.just.library.ChromeClientCallbackManager;
 
 import butterknife.BindView;
 
-public class ParticularActivity extends BaseActivity<EmptyView, EmptyPresenter> implements EmptyView {
+public class ParticularActivity extends BaseActivity<SetCollectView, SetCollectPresenter> implements SetCollectView {
 
     @BindView(R.id.container)
     LinearLayout mContainer;
@@ -32,11 +37,13 @@ public class ParticularActivity extends BaseActivity<EmptyView, EmptyPresenter> 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
     private AgentWeb mAgentWeb;
-    private String mName;
+    private String mLink;
+    private String mTitle;
+    private int mId;
 
     @Override
-    protected EmptyPresenter initPresenter() {
-        return new EmptyPresenter();
+    protected SetCollectPresenter initPresenter() {
+        return new SetCollectPresenter();
     }
 
     @Override
@@ -46,10 +53,10 @@ public class ParticularActivity extends BaseActivity<EmptyView, EmptyPresenter> 
 
     @Override
     protected void initView() {
-
         Intent intent = getIntent();
-        mName = intent.getStringExtra(Constants.LINK);
-        String title = intent.getStringExtra(Constants.TITLE);
+        mId = intent.getIntExtra(Constants.ID,0);
+        mLink = intent.getStringExtra(Constants.LINK);
+        mTitle = intent.getStringExtra(Constants.TITLE);
         ChromeClientCallbackManager.ReceivedTitleCallback mCallback;
         mCallback = null;
         mAgentWeb = AgentWeb.with(this)
@@ -59,8 +66,8 @@ public class ParticularActivity extends BaseActivity<EmptyView, EmptyPresenter> 
                 .setReceivedTitleCallback(mCallback)
                 .createAgentWeb()
                 .ready()
-                .go(mName);
-        mTvTitle.setText(title);
+                .go(mLink);
+        mTvTitle.setText(mTitle);
 
         img.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -108,11 +115,39 @@ public class ParticularActivity extends BaseActivity<EmptyView, EmptyPresenter> 
             share_intent = Intent.createChooser(share_intent, "分享");
             startActivity(share_intent);
         } else if (item.getItemId() == 2) {
+            boolean flag = (boolean) SpUtil.getParam(Constants.LOGIN, false);
+            if (flag){
+                setCollect();
+            }else {
+                Intent intent = new Intent(ParticularActivity.this, LoginActivity.class);
+                intent.putExtra("judge", "judge");
+                startActivity(intent);
+            }
         } else {
-            Uri uri = Uri.parse(mName);
+            Uri uri = Uri.parse(mLink);
             Intent intent = new Intent(Intent.ACTION_VIEW, uri);
             startActivity(intent);
         }
         return true;
+    }
+
+    private void setCollect() {
+        String name = (String) SpUtil.getParam(Constants.USERNAME, "");
+        String register_password = (String) SpUtil.getParam(Constants.PASSWORD, "");
+        String password1 = "loginUserPassword="+register_password;
+        String name1 = "loginUserName="+name;
+        mPresenter.setCollectData(mId,name1,password1);
+    }
+
+    @Override
+    public void setData(SetCollectBean bean) {
+        if (bean.getErrorCode() == Constants.SUCCESS_CODE){
+            ToastUtil.showShort("收藏成功");
+        }
+    }
+
+    @Override
+    public void onFail(String msg) {
+        ToastUtil.showShort(msg);
     }
 }

@@ -56,6 +56,9 @@ dependencies {
     implementation 'com.youth.banner:banner:1.4.10'
     implementation 'com.miguelcatalan:materialsearchview:1.4.0'
     implementation 'com.just.agentweb:agentweb:2.0.0'
+    //日历
+    implementation 'com.prolificinteractive:material-calendarview:1.4.3'
+
     //粘性头部
     //implementation 'com.github.qdxxxx:StickyHeaderDecoration:1.0.1'
     //implementation files('build/generated/mockable-android-28.v3.jar')

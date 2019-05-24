@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.activity.TodoxinzengActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.Toolbar
+            android:background="@color/colorAccent"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_60">
+
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="@dimen/dp_20"
+                android:layout_height="@dimen/dp_20"
+                android:src="@mipmap/back_arrow" />
+
+            <TextView
+                android:textColor="@color/white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_50"
+                android:text="新增"
+                android:textSize="@dimen/sp_25" />
+        </android.support.v7.widget.Toolbar>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_40"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:layout_marginTop="@dimen/dp_10">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="标题："
+                android:textSize="@dimen/sp_18" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_20"
+                android:layout_marginLeft="@dimen/dp_54"
+                android:layout_marginTop="@dimen/dp_3"
+                android:background="@null"
+                android:hint="必填" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_1"
+            android:background="@color/comment_line" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_100"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:layout_marginTop="@dimen/dp_10">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="详情："
+                android:textSize="@dimen/sp_18" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_54"
+                android:layout_marginTop="@dimen/dp_3"
+                android:background="@null"
+                android:hint="非必填" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_1"
+            android:background="@color/comment_line" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_40"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:layout_marginTop="@dimen/dp_10">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="优先级："
+                android:textSize="@dimen/sp_18" />
+
+            <RadioGroup
+                android:id="@+id/radioGroup_gender"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_70"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/yiban"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:checked="true"
+                    android:text="一般" />
+
+                <RadioButton
+                    android:id="@+id/zhongyao"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:checked="false"
+                    android:text="重要" />
+            </RadioGroup>
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_1"
+            android:background="@color/comment_line" />
+
+        <RelativeLayout
+            android:id="@+id/relati_riqi"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_40"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:layout_marginTop="@dimen/dp_10">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="日期："
+                android:layout_marginTop="@dimen/dp_2"
+                android:textSize="@dimen/sp_18" />
+
+            <TextView
+                android:id="@+id/riqi"
+                android:text="2019-05-24"
+                android:textSize="@dimen/sp_18"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/dp_20"
+                android:layout_marginLeft="@dimen/dp_84"
+                android:layout_marginTop="@dimen/dp_1"
+                android:background="@null" />
+            <ImageView
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/dp_20"
+                android:layout_marginTop="@dimen/dp_10"
+                android:src="@drawable/right_arrow"
+                android:layout_width="@dimen/dp_10"
+                android:layout_height="@dimen/dp_10" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_1"
+            android:background="@color/comment_line" />
+    </LinearLayout>
+
+
+    <Button
+        android:layout_marginLeft="@dimen/dp_20"
+        android:layout_marginRight="@dimen/dp_20"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/dp_20"
+        android:background="@color/blue"
+        android:textColor="@color/white"
+        android:text="保存"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_40" />
+</RelativeLayout>

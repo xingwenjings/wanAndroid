@@ -33,7 +33,7 @@
     <string name="not_data">暂无数据</string>
     <string name="search_tint">发现更多干货</string>
     <string name="action_search">搜索</string>
-    <string name="about_play_android">玩Android V1.1.1</string>
+    <string name="about_play_android">玩Android V1.1.1\n</string>
     <string name="about_sites_title">网站内容</string>
     <string name="hot_search">热搜</string>
     <string name="login">登录</string>
@@ -56,15 +56,17 @@
     \t\t\t\t关于网站的排版\n
     \t\t\t\t关于新增常用网址以及工具\n
     \t\t\t\t未来你希望增加的工具等
+        \n
+        \n
 </string>
     <string name="about_sites_content_two">
     \t\t可以在
 </string>
     <string name="about_sites_content_three">https://github.com/hongyangAndroid/wanandroid</string>
-    <string name="about_sites_content_four">项目中以issue形式提出,我将及时跟进。
+    <string name="about_sites_content_four">/xueandroid项目中以issue形式提出,我将及时跟进。
     \n\n\t\t如果您希望长期关注本站，可以加入我们的QQ\n群：591683946
 </string>
-    <string name="about_sites_content_five">\n源码位置
+    <string name="about_sites_content_five">\n源码位置\n
 </string>
     <string name="about_sites_content_six">\t\t本软件开源，如果你发现任何错误，不要犹豫，
     马上点击GitHub，在上面发起issue或者提交pullrequest</string>
