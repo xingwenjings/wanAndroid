@@ -115,9 +115,6 @@ public class MainActivity extends BaseActivity<EmptyView, EmptyPresenter> implem
     private void initNav() {
         //解决侧滑菜单图标不显示问题
         nav.setItemIconTintList(null);
-        
-
-
 
     }
 
@@ -209,22 +206,18 @@ public class MainActivity extends BaseActivity<EmptyView, EmptyPresenter> implem
                         switchFragment(TYPE_HOME);
                         break;
                     case 1:
-                       
                         tv.setText(R.string.knowledge);
                         switchFragment(TYPE_KNOWLEDGE);
                         break;
                     case 2:
-                      
                         tv.setText(R.string.wechat);
                         switchFragment(TYPE_WECHAT);
                         break;
                     case 3:
-                       
                         tv.setText(R.string.navigation);
                         switchFragment(TYPE_NAVIGATION);
                         break;
                     case 4:
-                        
                         tv.setText(R.string.project);
                         switchFragment(TYPE_PROJECT);
                         break;

@@ -2,13 +2,10 @@ package com.example.wan_android.ui.activity;
 
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.v7.widget.Toolbar;
-import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.widget.ImageView;
@@ -23,15 +20,11 @@ import com.example.wan_android.presenter.EmptyPresenter;
 import com.example.wan_android.util.ShareUtil;
 import com.example.wan_android.util.UIUtils;
 import com.example.wan_android.view.EmptyView;
-import com.jaeger.library.StatusBarUtil;
 
 import com.just.library.AgentWeb;
 import com.just.library.ChromeClientCallbackManager;
 
-import java.net.URL;
-
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 //邢文静   webview
@@ -117,6 +110,7 @@ public class WeChatChildActivity extends BaseActivity<EmptyView, EmptyPresenter>
                         , "");
                 break;
             case 2:
+
                 break;
             case 3:
                 getBrowser();
@@ -139,4 +133,8 @@ public class WeChatChildActivity extends BaseActivity<EmptyView, EmptyPresenter>
     public void onClick() {
         finish();
     }
+
+
+
+
 }

@@ -1,6 +1,361 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:background="@color/c_ffffff"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_58"
+        android:background="@color/colorAccent"
+        app:layout_scrollFlags="scroll|enterAlways"
+        app:titleTextColor="@color/white">
+        <ImageView
+            android:id="@+id/img"
+            android:layout_width="@dimen/dp_23"
+            android:layout_height="@dimen/dp_23"
+            android:layout_marginLeft="@dimen/dp_15"
+            android:src="@mipmap/jiantou" />
 
-</android.support.constraint.ConstraintLayout>
+        <TextView
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_17"
+            android:id="@+id/tv_title"
+            android:ellipsize="marquee"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:scrollHorizontally="true"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:singleLine="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_30"
+            android:text="@string/string_settings" />
+    </android.support.v7.widget.Toolbar>
+
+    <TextView
+        android:id="@+id/setting_usage_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dp_8"
+        android:text="@string/setting_normal"
+        android:textColor="@color/blue" />
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/setting_usage_card"
+        android:layout_margin="@dimen/dp_8"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardElevation="@dimen/dp_2"
+        app:cardCornerRadius="@dimen/dp_3">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/drawer_item_bg_n">
+
+            <LinearLayout
+                android:id="@+id/setting_auto_cache_group"
+                android:orientation="horizontal"
+                android:padding="@dimen/dp_12"
+                android:gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@null" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="@string/setting_image"
+                    android:textColor="@color/setting_text" />
+
+                <android.support.v7.widget.AppCompatCheckBox
+                    android:id="@+id/cb_setting_cache"
+                    android:button="@drawable/abc_btn_check_material"
+                    android:buttonTint="@color/colorAccent"
+                    android:checked="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:ignore="PrivateResource" />
+            </LinearLayout>
+
+            <include layout="@layout/divider_line_05" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:padding="@dimen/dp_12"
+                android:gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@null" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="@string/setting_cache"
+                    android:textColor="@color/setting_text" />
+
+                <android.support.v7.widget.AppCompatCheckBox
+                    android:id="@+id/cb_setting_image"
+                    android:button="@drawable/abc_btn_check_material"
+                    android:buttonTint="@color/colorAccent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:ignore="PrivateResource" />
+            </LinearLayout>
+
+            <include layout="@layout/divider_line_05"/>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:padding="@dimen/dp_12"
+                android:gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@null" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="@string/setting_night"
+                    android:textColor="@color/setting_text" />
+
+
+            </LinearLayout>
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+    <TextView
+        android:id="@+id/setting_other_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dp_8"
+        android:text="@string/setting_other"
+        android:textColor="@color/blue" />
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/setting_other_group"
+        android:layout_margin="@dimen/dp_8"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardElevation="@dimen/dp_2"
+        app:cardCornerRadius="@dimen/dp_3"
+        android:background="@color/c_ffffff">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/drawer_item_bg_n">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+            <TextView
+                android:id="@+id/ll_setting_feedback"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/dp_12"
+                android:text="@string/setting_feedback"
+                android:textColor="@color/setting_text"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:gravity="center_vertical"
+                android:drawablePadding="@dimen/dp_12"/>
+            <android.support.design.widget.FloatingActionButton
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/dp_40"
+                app:backgroundTint="@color/colorAccent"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/dp_10"
+                />
+
+
+        </RelativeLayout>
+
+
+            <include layout="@layout/divider_line_05"/>
+
+            <LinearLayout
+                android:id="@+id/ll_setting_clear"
+                android:orientation="horizontal"
+                android:padding="@dimen/dp_12"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@null" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="@string/setting_clear"
+                    android:textColor="@color/setting_text" />
+
+                <TextView
+                    android:id="@+id/tv_setting_clear"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/comment_text" />
+            </LinearLayout>
+            <include layout="@layout/divider_line_05"/>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:padding="@dimen/dp_12"
+                android:gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@null" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="@string/navigation_color"
+                    android:textColor="@color/setting_text" />
+
+                <android.support.v7.widget.AppCompatCheckBox
+                    android:id="@+id/navigation_color"
+                    android:button="@drawable/abc_btn_check_material"
+                    android:buttonTint="@color/colorAccent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:ignore="PrivateResource" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+    <TextView
+        android:id="@+id/abouts"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dp_8"
+        android:text="@string/setting_about"
+        android:textColor="@color/blue" />
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/setting_about"
+        android:layout_margin="@dimen/dp_8"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardElevation="@dimen/dp_2"
+        app:cardCornerRadius="@dimen/dp_3"
+        android:background="@color/c_ffffff">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:textSize="@dimen/sp_14"
+                    android:layout_height="wrap_content"
+                    android:text="@string/setting_code"
+                    android:textColor="@color/setting_text" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:id="@+id/setting_code"
+                    android:text="当前版本号"
+                    android:textSize="@dimen/sp_12"
+                    ></TextView>
+            </LinearLayout>
+            <include layout="@layout/divider_line_05"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="@string/setting_log"
+                    android:textSize="@dimen/sp_14"
+                    android:textColor="@color/setting_text" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:id="@+id/setting_log"
+                    android:text="路径"
+                    android:textSize="@dimen/sp_12"
+                    ></TextView>
+            </LinearLayout>
+            <include layout="@layout/divider_line_05"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="@string/setting_yuan"
+                    android:textSize="@dimen/sp_14"
+                    android:textColor="@color/setting_text" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="源代码路径"
+                    android:textSize="@dimen/sp_12"
+                    android:id="@+id/setting_yuan"
+                    ></TextView>
+            </LinearLayout>
+            <include layout="@layout/divider_line_05"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/dp_14"
+                    android:text="@string/setting_shen"
+                    android:textColor="@color/setting_text" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textSize="@dimen/sp_12"
+                    android:text="非商业企图"
+                    ></TextView>
+            </LinearLayout>
+            <include layout="@layout/divider_line_05"/>
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+</LinearLayout>

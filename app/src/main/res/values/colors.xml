@@ -36,4 +36,10 @@
     <color name="deep_red">#dc3b1f</color>
     <color name="while_most_color">#e4e4e4</color>
     <color name="blue">#3F9FE0</color>
+    <color name="colorBackground">#EEEEEE</color>
+    <color name="comment_text">#5b5d5c</color>
+    <color name="drawer_item_bg_p">#e8e8e8</color>
+    <color name="drawer_item_bg_n">#fffff9</color>
+    <color name="setting_text">#5b5d5c</color>
+
 </resources>

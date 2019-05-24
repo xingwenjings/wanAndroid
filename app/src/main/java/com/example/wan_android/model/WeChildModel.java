@@ -3,6 +3,8 @@ package com.example.wan_android.model;
 import android.util.Log;
 
 import com.example.wan_android.base.BaseModel;
+import com.example.wan_android.base.Constants;
+import com.example.wan_android.bean.WeChatCollectBean;
 import com.example.wan_android.bean.WeChildBean;
 import com.example.wan_android.net.BaseObserver;
 import com.example.wan_android.net.HttpUtils;
@@ -41,5 +43,10 @@ public class WeChildModel extends BaseModel {
                         addDisposable(d);
                     }
                 });
+    }
+
+    public void getCollection(int id, ResultCallBack<WeChatCollectBean> resultCallBack) {
+        PlaySeriver apiserver = HttpUtils.getInstance().getApiserver(PlaySeriver.BASE_URL, PlaySeriver.class);
+
     }
 }
