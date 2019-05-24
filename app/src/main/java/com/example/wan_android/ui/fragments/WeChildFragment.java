@@ -7,10 +7,12 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 
 import com.example.wan_android.R;
 import com.example.wan_android.base.BaseFragment;
 import com.example.wan_android.base.Constants;
+import com.example.wan_android.bean.WeChatCollectBean;
 import com.example.wan_android.bean.WeChildBean;
 import com.example.wan_android.presenter.WeChildPresenter;
 import com.example.wan_android.ui.activity.WeChatChildActivity;
@@ -38,6 +40,7 @@ public class WeChildFragment extends BaseFragment<WeChildView, WeChildPresenter>
     private int page = 1;
     private ArrayList<WeChildBean.DataBean.DatasBean> datasBeans;
     private WeChildAdapter adapter;
+    private String TAG="WeChildFragment";
 
     @SuppressLint("ValidFragment")
     public WeChildFragment(int id) {
@@ -79,6 +82,18 @@ public class WeChildFragment extends BaseFragment<WeChildView, WeChildPresenter>
             }
         });
 
+        adapter.setOnItemCollectClick(new WeChildAdapter.OnItemCollectClick() {
+            @Override
+            public void onItemCollectClick(int id, boolean b) {
+                Log.e(TAG, "onItemCollectClick: " + b + id);
+                if (b) {
+                    mPresenter.setNoCollect(id);
+                } else {
+                    mPresenter.setCollects(id);
+                }
+            }
+        });
+
     }
 
     @Override
@@ -112,6 +127,13 @@ public class WeChildFragment extends BaseFragment<WeChildView, WeChildPresenter>
     @Override
     public void getWeChildField(String error) {
         ToastUtil.showShort(error);
+    }
+
+
+    //收藏
+    @Override
+    public void getWeChatCollect(WeChatCollectBean weChatCollectBean) {
+
     }
 
 

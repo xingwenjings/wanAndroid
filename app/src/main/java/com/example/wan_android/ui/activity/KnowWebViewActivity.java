@@ -17,10 +17,17 @@ import android.widget.TextView;
 import com.example.wan_android.R;
 import com.example.wan_android.base.BaseActivity;
 import com.example.wan_android.base.Constants;
+import com.example.wan_android.bean.SetCollectBean;
+import com.example.wan_android.bean.ZWBean;
 import com.example.wan_android.presenter.EmptyPresenter;
+import com.example.wan_android.presenter.KnowZWPresenter;
+import com.example.wan_android.presenter.SetCollectPresenter;
 import com.example.wan_android.util.ShareUtil;
 import com.example.wan_android.util.SpUtil;
+import com.example.wan_android.util.ToastUtil;
 import com.example.wan_android.view.EmptyView;
+import com.example.wan_android.view.KnowZWView;
+import com.example.wan_android.view.SetCollectView;
 import com.just.library.AgentWeb;
 import com.just.library.ChromeClientCallbackManager;
 
@@ -28,7 +35,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 //马佳雪 用AgentWeb加载页面
-public class KnowWebViewActivity extends BaseActivity<EmptyView, EmptyPresenter> implements EmptyView, View.OnClickListener {
+public class KnowWebViewActivity extends BaseActivity<SetCollectView, SetCollectPresenter> implements SetCollectView, View.OnClickListener {
     @BindView(R.id.img)
     ImageView img;
     @BindView(R.id.tv_title)
@@ -41,10 +48,10 @@ public class KnowWebViewActivity extends BaseActivity<EmptyView, EmptyPresenter>
     private String link;
     private String name;
     private AgentWeb mAgentWeb;
-
+    private int mId;
     @Override
-    protected EmptyPresenter initPresenter() {
-        return new EmptyPresenter();
+    protected SetCollectPresenter initPresenter() {
+        return new SetCollectPresenter();
     }
 
     @Override
@@ -103,12 +110,28 @@ public class KnowWebViewActivity extends BaseActivity<EmptyView, EmptyPresenter>
                         , "");
                 break;
             case 200:
+                boolean flag = (boolean) SpUtil.getParam(Constants.LOGIN, false);
+                if (flag){
+                    setCollect();
+                }else {
+                    Intent intent = new Intent(KnowWebViewActivity.this, LoginActivity.class);
+                    intent.putExtra("judge", "judge");
+                    startActivity(intent);
+                }
                 break;
             case 300:
                 getBrowser();
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void setCollect() {
+        String name = (String) SpUtil.getParam(Constants.USERNAME, "");
+        String register_password = (String) SpUtil.getParam(Constants.PASSWORD, "");
+        String password1 = "loginUserPassword="+register_password;
+        String name1 = "loginUserName="+name;
+        mPresenter.setCollectData(mId,name1,password1);
     }
 
     private void getBrowser() {
@@ -136,5 +159,17 @@ public class KnowWebViewActivity extends BaseActivity<EmptyView, EmptyPresenter>
     protected void onDestroy() {
         mAgentWeb.getWebLifeCycle().onDestroy();
         super.onDestroy();
+    }
+
+    @Override
+    public void setData(SetCollectBean bean) {
+        if (bean.getErrorCode() == Constants.SUCCESS_CODE){
+            ToastUtil.showShort("收藏成功");
+        }
+    }
+
+    @Override
+    public void onFail(String msg) {
+        ToastUtil.showShort(msg);
     }
 }

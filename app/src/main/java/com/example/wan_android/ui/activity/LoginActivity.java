@@ -1,5 +1,6 @@
 package com.example.wan_android.ui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.text.TextUtils;
@@ -14,6 +15,7 @@ import com.example.wan_android.base.BaseActivity;
 import com.example.wan_android.base.Constants;
 import com.example.wan_android.bean.LoginInfo;
 import com.example.wan_android.net.ApiServer;
+import com.example.wan_android.net.KnowledgeApi;
 import com.example.wan_android.presenter.LoginPresenter;
 import com.example.wan_android.util.SpUtil;
 import com.example.wan_android.util.ToastUtil;
@@ -70,11 +72,12 @@ public class LoginActivity extends BaseActivity<LoginView, LoginPresenter> imple
     @Override
     public void onSuccess(LoginInfo bean) {
         hideLoading();
-        //�����û���Ϣ��������¼״̬���Ϊ�ѵ�¼
         SpUtil.setParam(Constants.USERNAME, bean.getData().getUsername());;
         SpUtil.setParam(Constants.PASSWORD, mEtPsw.getText().toString());
         SpUtil.setParam(Constants.LOGIN, true);
-        setResult(ApiServer.SUCCESS_CODE);
+        Intent intent = new Intent();
+        intent.putExtra("name",bean.getData().getUsername());
+        setResult(ApiServer.SUCCESS_CODE,intent);
         finish();
     }
 
@@ -96,7 +99,6 @@ public class LoginActivity extends BaseActivity<LoginView, LoginPresenter> imple
                 if (!TextUtils.isEmpty(name) && !TextUtils.isEmpty(psw)) {
                     mPresenter.login(name, psw);
                     showLoading();
-               
                 } else {
                     ToastUtil.showShort("用户名或密码不能为空");
                 }

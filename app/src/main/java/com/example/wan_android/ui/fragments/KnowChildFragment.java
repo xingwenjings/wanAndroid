@@ -109,7 +109,12 @@ public class KnowChildFragment extends BaseFragment<KnowArticleView, KnowArticle
 
             @Override
             public void setDislike(int id) {
-
+                if ((boolean) SpUtil.getParam(Constants.LOGIN, false)) {
+                    mPresenter.dis(list.get(id).getId()+"");
+                } else {
+                    ToastUtil.showShort("请先登录");
+                    startActivity(new Intent(getActivity(), LoginActivity.class));
+                }
             }
         });
     }
