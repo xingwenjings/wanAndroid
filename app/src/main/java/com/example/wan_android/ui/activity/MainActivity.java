@@ -7,20 +7,17 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
-import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
+import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.TextView;
+
 import com.example.wan_android.R;
 import com.example.wan_android.base.BaseActivity;
 import com.example.wan_android.base.BaseFragment;
@@ -33,15 +30,18 @@ import com.example.wan_android.ui.fragments.NavigationFragment;
 import com.example.wan_android.ui.fragments.ProjectFragment;
 import com.example.wan_android.ui.fragments.WeChatFragment;
 import com.example.wan_android.util.SpUtil;
+import com.example.wan_android.util.UIUtils;
 import com.example.wan_android.view.EmptyView;
-import com.jaeger.library.StatusBarUtil;
 
 import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class MainActivity extends BaseActivity<EmptyView, EmptyPresenter> implements EmptyView, View.OnClickListener {
+    @BindView(R.id.tv)
+    TextView tv;
     @BindView(R.id.toolbar)
     Toolbar toolbar;
     @BindView(R.id.main_fl)
@@ -54,16 +54,17 @@ public class MainActivity extends BaseActivity<EmptyView, EmptyPresenter> implem
     NavigationView nav;
     @BindView(R.id.fab)
     FloatingActionButton fab;
+    @BindView(R.id.tool_img)
+    ImageButton mToolImg;
     private ArrayList<BaseFragment> fragments;
     private FragmentManager mManager;
     private int mLastFragmentPosition = 0;
     private TextView tvLogin;
-    private final int TYPE_HOME=0;
-    private final int TYPE_KNOWLEDGE=1;
-    private final int TYPE_WECHAT=2;
-    private final int TYPE_NAVIGATION=3;
-    private final int TYPE_PROJECT=4;
-
+    private final int TYPE_HOME = 0;
+    private final int TYPE_KNOWLEDGE = 1;
+    private final int TYPE_WECHAT = 2;
+    private final int TYPE_NAVIGATION = 3;
+    private final int TYPE_PROJECT = 4;
 
 
     @Override
@@ -78,9 +79,9 @@ public class MainActivity extends BaseActivity<EmptyView, EmptyPresenter> implem
 
     @Override
     protected void initView() {
-        fragments=new ArrayList<>();
+        tv.setText(UIUtils.getString(R.string.play));
+        fragments = new ArrayList<>();
         //设置toolbar功能
-        toolbar.setTitle(R.string.play);
         toolbar.setNavigationIcon(null);
         toolbar.setTitleTextColor(getResources().getColor(R.color.white));
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, dl, toolbar, R.string.app_name, R.string.app_name);
@@ -88,6 +89,7 @@ public class MainActivity extends BaseActivity<EmptyView, EmptyPresenter> implem
         toggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.white));
         dl.addDrawerListener(toggle);
         fab.setOnClickListener(this);
+        mToolImg.setOnClickListener(this);
         toggle.syncState();
 
 
@@ -101,7 +103,7 @@ public class MainActivity extends BaseActivity<EmptyView, EmptyPresenter> implem
     private void initNav() {
         //解决侧滑菜单图标不显示问题
         nav.setItemIconTintList(null);
-        
+
     }
 
     @Override
@@ -115,35 +117,35 @@ public class MainActivity extends BaseActivity<EmptyView, EmptyPresenter> implem
         nav.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                switch (menuItem.getItemId()){
+                switch (menuItem.getItemId()) {
                     case R.id.collect:
                         boolean flag = (boolean) SpUtil.getParam(Constants.LOGIN, false);
-                        if (flag){
-                            startActivity(new Intent(MainActivity.this,CollectActivity.class));
-                        }else {
+                        if (flag) {
+                            startActivity(new Intent(MainActivity.this, CollectActivity.class));
+                        } else {
                             Intent intent = new Intent(MainActivity.this, LoginActivity.class);
                             intent.putExtra("judge", "judge");
                             startActivity(intent);
                         }
                         break;
                     case R.id.settings:
-                        startActivity(new Intent(MainActivity.this,SettingsActivity.class));
+                        startActivity(new Intent(MainActivity.this, SettingsActivity.class));
                         break;
                     case R.id.night:
 
                         break;
                     case R.id.todo:
                         boolean flag1 = (boolean) SpUtil.getParam(Constants.LOGIN, false);
-                        if (flag1){
-                            startActivity(new Intent(MainActivity.this,TodoActivity.class));
-                        }else {
+                        if (flag1) {
+                            startActivity(new Intent(MainActivity.this, TodoActivity.class));
+                        } else {
                             Intent intent = new Intent(MainActivity.this, LoginActivity.class);
                             intent.putExtra("judge", "judge");
                             startActivity(intent);
                         }
                         break;
                     case R.id.me:
-                        startActivity(new Intent(MainActivity.this,MeActivity.class));
+                        startActivity(new Intent(MainActivity.this, MeActivity.class));
                         break;
                 }
                 return false;
@@ -160,7 +162,7 @@ public class MainActivity extends BaseActivity<EmptyView, EmptyPresenter> implem
     }
 
     private void initFragment() {
-        mManager=getSupportFragmentManager();
+        mManager = getSupportFragmentManager();
         fragments = new ArrayList<>();
         fragments.add(new HomeFragment());
         fragments.add(new KnowLedgeFragment());
@@ -169,7 +171,7 @@ public class MainActivity extends BaseActivity<EmptyView, EmptyPresenter> implem
         fragments.add(new ProjectFragment());
 
         FragmentTransaction fragmentTransaction = mManager.beginTransaction();
-        fragmentTransaction.add(R.id.main_fl,fragments.get(0));
+        fragmentTransaction.add(R.id.main_fl, fragments.get(0));
         fragmentTransaction.commit();
     }
 
@@ -178,25 +180,25 @@ public class MainActivity extends BaseActivity<EmptyView, EmptyPresenter> implem
         tab.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-                switch (tab.getPosition()){
+                switch (tab.getPosition()) {
                     case 0:
-                        toolbar.setTitle(R.string.play);
+                        tv.setText(R.string.play);
                         switchFragment(TYPE_HOME);
                         break;
                     case 1:
-                        toolbar.setTitle(R.string.knowledge);
+                        tv.setText(R.string.knowledge);
                         switchFragment(TYPE_KNOWLEDGE);
                         break;
                     case 2:
-                        toolbar.setTitle(R.string.wechat);
+                        tv.setText(R.string.wechat);
                         switchFragment(TYPE_WECHAT);
                         break;
                     case 3:
-                        toolbar.setTitle(R.string.navigation);
+                        tv.setText(R.string.navigation);
                         switchFragment(TYPE_NAVIGATION);
                         break;
                     case 4:
-                        toolbar.setTitle(R.string.project);
+                        tv.setText(R.string.project);
                         switchFragment(TYPE_PROJECT);
                         break;
                 }
@@ -231,16 +233,20 @@ public class MainActivity extends BaseActivity<EmptyView, EmptyPresenter> implem
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.tv_login:
                 if (tvLogin.getText().toString().trim().equals("登录"))
                     startActivityForResult(new Intent(this, LoginActivity.class), 100);
                 break;
             case R.id.fab:
-                mainFl.scrollBy(0,0);
+                mainFl.scrollBy(0, 0);
+                break;
+            case R.id.tool_img:
+                startActivity(new Intent(this,SearchActivity.class));
                 break;
         }
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -248,4 +254,6 @@ public class MainActivity extends BaseActivity<EmptyView, EmptyPresenter> implem
             tvLogin.setText((String) SpUtil.getParam(Constants.USERNAME, "登录"));
         }
     }
+
+
 }
