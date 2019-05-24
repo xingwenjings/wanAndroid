@@ -22,6 +22,7 @@ import com.example.wan_android.R;
 import com.example.wan_android.base.BaseActivity;
 import com.example.wan_android.base.BaseFragment;
 import com.example.wan_android.base.Constants;
+import com.example.wan_android.net.ApiServer;
 import com.example.wan_android.net.KnowledgeApi;
 import com.example.wan_android.presenter.EmptyPresenter;
 import com.example.wan_android.ui.fragments.HomeFragment;
@@ -250,8 +251,9 @@ public class MainActivity extends BaseActivity<EmptyView, EmptyPresenter> implem
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 100 && resultCode == KnowledgeApi.SUCCESS_CODE) {
-            tvLogin.setText((String) SpUtil.getParam(Constants.USERNAME, "登录"));
+        if (requestCode == 100 && resultCode == ApiServer.SUCCESS_CODE) {
+            tvLogin.setText(data.getStringExtra("name"));
+            //tvLogin.setText((String) SpUtil.getParam(Constants.USERNAME, "登录"));
         }
     }
 

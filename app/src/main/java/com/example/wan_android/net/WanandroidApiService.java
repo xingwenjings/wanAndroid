@@ -2,9 +2,11 @@ package com.example.wan_android.net;
 
 import com.example.wan_android.bean.CollectBean;
 import com.example.wan_android.bean.NavigationBean;
+import com.example.wan_android.bean.SearchChildBean;
 import com.example.wan_android.bean.SetCollectBean;
 
 import io.reactivex.Observable;
+import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
@@ -31,4 +33,9 @@ public interface WanandroidApiService {
     Observable<SetCollectBean> SetCollectData(@Path("id") int id,
                                               @Header("Cookie") String name,
                                               @Header("Cookie") String password);
+
+    @POST("article/query/{page}/json")
+    @FormUrlEncoded
+    Observable<SearchChildBean> getSearchChildData(@Path("page") int page,
+                                                   @Field("k") String query);
 }
