@@ -35,5 +35,9 @@ public interface Constants {
     String TITLE = "title";
     int SUCCESS_CODE = 0;
     String LINK = "link";
+
+    String LOGIN="login";
     String NAME = "name";
+    String PASSWORD = "password";
+    String ID = "id";
 }

@@ -12,7 +12,7 @@
         <!--dialog背景设置为透明-->
         <item name="android:windowBackground">@color/transparent</item>
         <!--去掉背景半透明效果-->
-        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:backgroundDimEnabled">true</item>
 
     </style>
     <style name="FullScreen" parent="Theme.AppCompat.Light.NoActionBar">

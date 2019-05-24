@@ -5,6 +5,6 @@
     <ImageView
         android:layout_width="@dimen/dp_60"
         android:layout_height="@dimen/dp_60"
-        android:background="@drawable/icon_loading"/>
+        android:src="@drawable/loading_png"/>
 
 </LinearLayout>

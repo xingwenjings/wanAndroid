@@ -1,4 +1,4 @@
-package com.example.wan_android.Adapet;
+package com.example.wan_android.adapter;
 
 import android.content.Context;
 import android.content.Intent;

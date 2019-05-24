@@ -21,6 +21,8 @@ public interface ApiServer {
      *
      */
     String ClassIfyUrl = "https://www.wanandroid.com/project/tree/";
+    int SUCCESS_CODE = 0;
+
     @GET("json")
     Observable<ClassifyBean> getDataClassify();
 
