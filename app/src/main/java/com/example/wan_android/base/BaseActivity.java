@@ -9,7 +9,7 @@ import com.example.wan_android.widght.LoadingDialog;
 import butterknife.ButterKnife;
 
 public abstract class BaseActivity<V extends BaseMvpView,P extends BasePresenter>
-        extends AppCompatActivity implements BaseMvpView{
+        extends AppCompatActivity implements BaseMvpView {
 
     //每次都要在子类中强转
     //protected BasePresenter mPresenter;

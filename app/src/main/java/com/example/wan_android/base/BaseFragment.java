@@ -14,7 +14,7 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
 public abstract class BaseFragment<V extends BaseMvpView,P extends BasePresenter>
-        extends Fragment implements BaseMvpView{
+        extends Fragment implements BaseMvpView {
 
     private Unbinder mUnbinder;
     protected P mPresenter;

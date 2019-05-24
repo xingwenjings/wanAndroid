@@ -19,6 +19,8 @@ import com.example.wan_android.bean.SearchBean;
 import com.example.wan_android.presenter.SearchPresenter;
 import com.example.wan_android.ui.adapters.SearchChildAdapter;
 import com.example.wan_android.ui.adapters.SouSouAdapter;
+import com.example.wan_android.util.ToastUtil;
+import com.example.wan_android.util.Tools;
 import com.example.wan_android.view.SearchView;
 import com.example.wan_android.widght.FlowlayoutManger;
 import com.miguelcatalan.materialsearchview.SearchAdapter;
@@ -30,6 +32,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class SearchActivity extends BaseActivity<SearchView, SearchPresenter> implements SearchView, View.OnClickListener {
+
 
 
     @BindView(R.id.s_iv)
@@ -108,6 +111,15 @@ public class SearchActivity extends BaseActivity<SearchView, SearchPresenter> im
 
                 break;
             case R.id.search_tv:
+                String query = searchEdit.getText().toString();
+                if (!TextUtils.isEmpty(query)){
+                    Intent intent = new Intent(SearchActivity.this, SearchChildActivity.class);
+                    intent.putExtra("query",query);
+                    startActivity(intent);
+                }else {
+                   searchEdit.setCursorVisible(false);
+                    Tools.closeKeyBoard(this);
+                }
 
                 break;
         }

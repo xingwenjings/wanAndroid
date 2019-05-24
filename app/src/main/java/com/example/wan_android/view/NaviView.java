@@ -7,7 +7,7 @@ import com.example.wan_android.bean.NavigationBean;
  * Created by apcnl on 2019/5/20.
  */
 
-public interface NaviView extends BaseMvpView{
+public interface NaviView extends BaseMvpView {
     void setData(NavigationBean bean);
 
     void onFail(String msg);

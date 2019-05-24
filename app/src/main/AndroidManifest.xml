@@ -25,7 +25,6 @@
   
         <activity android:name=".ui.activity.HollListdetailsActivity" />
         <activity android:name=".ui.activity.HollBannerdetailsActivity" />
-        <activity android:name=".ui.activity.HollZhidingdetailsActivity"/>
         <activity android:name=".ui.activity.MainActivity" />
         <activity android:name=".ui.activity.WeChatChildActivity" />
         <activity android:name=".ui.activity.ParticularActivity" />
@@ -37,6 +36,7 @@
         <activity android:name=".ui.activity.SettingsActivity" />
         <activity android:name=".ui.activity.MeActivity" />
         <activity android:name=".ui.activity.TodoActivity" />
+        <activity android:name=".ui.activity.HollZhidingdetailsActivity" />
         <activity android:name=".ui.activity.SearchActivity" />
         <activity android:name=".ui.activity.SearchChildActivity"></activity>
         
