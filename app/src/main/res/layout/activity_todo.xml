@@ -1,6 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<RelativeLayout android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_70">
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/to"
+        android:background="@color/colorAccent"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_70">
+        <ImageView
+            android:id="@+id/back"
+            android:src="@mipmap/back_arrow"
+            android:layout_width="@dimen/dp_20"
+            android:layout_height="@dimen/dp_20" />
+        <TextView
+            android:id="@+id/text"
+            android:text="嘻嘻"
+            android:textColor="@color/white"
+            android:layout_marginLeft="@dimen/dp_50"
+            android:textSize="@dimen/sp_20"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
-</android.support.constraint.ConstraintLayout>
+        <ImageView
+            android:layout_marginLeft="@dimen/dp_150"
+            android:id="@+id/img_qiehuan"
+            android:background="@mipmap/icon_qiehuan"
+            android:layout_width="@dimen/dp_30"
+            android:layout_height="@dimen/dp_30" />
+    </android.support.v7.widget.Toolbar>
+    </RelativeLayout>
+    <com.example.wan_android.widght.ControlScrollViewPager
+        android:layout_marginTop="@dimen/dp_70"
+        android:id="@+id/viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_580" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/dp_55"
+        android:layout_above="@+id/ta"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="17dp"
+        android:layout_marginBottom="95dp"
+        android:src="@mipmap/icon_biji"
+        app:backgroundTint="@color/colorAccent"
+        app:layout_behavior="com.example.wan_android.widght.ScaleDownShowBehavior" />
+    <android.support.design.widget.TabLayout
+        android:id="@+id/ta"
+        android:layout_below="@+id/viewpager"
+        app:tabMode="fixed"
+        app:tabIndicatorHeight="@dimen/dp_0"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_75"/>
+</RelativeLayout>

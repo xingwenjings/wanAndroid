@@ -88,12 +88,17 @@ public class HollListdetailsActivity extends BaseActivity<HollListdetailsView, H
                 inifenxiang();
                 break;
             case 2:
+                initcoll();
                 break;
             case 3:
                 iniliulan();
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void initcoll() {
+        
     }
 
     private void iniliulan() {

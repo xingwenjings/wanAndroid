@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    android:id="@+id/ll"
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <Button
+        android:id="@+id/zhineng"
+        android:text="只能用一个"
+        android:background="@color/white"
+        android:layout_width="@dimen/dp_100"
+        android:layout_height="@dimen/dp_30" />
+    <Button
+        android:id="@+id/gong"
+        android:background="@color/white"
+        android:text="工作"
+        android:layout_width="@dimen/dp_100"
+        android:layout_height="@dimen/dp_30" />
+    <Button
+        android:id="@+id/xue"
+        android:text="学习"
+        android:background="@color/white"
+        android:layout_width="@dimen/dp_100"
+        android:layout_height="@dimen/dp_30" />
+    <Button
+        android:id="@+id/sheng"
+        android:text="生活"
+        android:background="@color/white"
+        android:layout_width="@dimen/dp_100"
+        android:layout_height="@dimen/dp_30" />
+</LinearLayout>
