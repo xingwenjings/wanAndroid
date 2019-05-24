@@ -27,7 +27,7 @@
             android:layout_height="wrap_content" />
 
         <ImageView
-            android:layout_marginLeft="@dimen/dp_150"
+            android:layout_marginLeft="@dimen/dp_190"
             android:id="@+id/img_qiehuan"
             android:background="@mipmap/icon_qiehuan"
             android:layout_width="@dimen/dp_30"

@@ -9,12 +9,15 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+
 import com.example.wan_android.R;
-import com.example.wan_android.bean.WeChatBean;
 import com.example.wan_android.bean.WeChildBean;
+import com.example.wan_android.util.ImagesLoader;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.http.POST;
 
 public class WeChildAdapter extends RecyclerView.Adapter<WeChildAdapter.ViewHolder> {
     private ArrayList<WeChildBean.DataBean.DatasBean> datasBeans;
@@ -51,6 +54,24 @@ public class WeChildAdapter extends RecyclerView.Adapter<WeChildAdapter.ViewHold
                 setOnClick.OnClickItem(datasBeans.get(i),i);
             }
         });
+
+        final boolean collect = datasBeans.get(i).isCollect();
+        final int id = datasBeans.get(i).getId();
+        if (collect){
+            ImagesLoader.setImage(context,R.drawable.follow,viewHolder.img,R.drawable.follow);
+        }else {
+            ImagesLoader.setImage(context,R.drawable.follow_unselected,viewHolder.img,R.drawable.follow_unselected);
+        }
+
+        //收藏与取消
+        viewHolder.img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mOnItemCollectClick!=null){
+                    mOnItemCollectClick.onItemCollectClick(id,collect);
+                }
+            }
+        });
     }
 
     @Override
@@ -81,5 +102,19 @@ public class WeChildAdapter extends RecyclerView.Adapter<WeChildAdapter.ViewHold
 
     public interface setOnClick{
         void OnClickItem(WeChildBean.DataBean.DatasBean datasBean,int position);
+    }
+
+
+    /**
+     * 点击收藏或取消收藏
+     */
+    private OnItemCollectClick mOnItemCollectClick;
+
+    public void setOnItemCollectClick(OnItemCollectClick onItemCollectClick) {
+        mOnItemCollectClick = onItemCollectClick;
+    }
+
+    public interface OnItemCollectClick{
+        void onItemCollectClick(int id, boolean b);
     }
 }

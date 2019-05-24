@@ -29,9 +29,11 @@
     <string name="string_about_me">关于我们</string>
     <string name="know_article_auther">作者</string>
     <string name="loade">正在加载中...</string>
+    <string name="collect">收藏</string>
+    <string name="not_data">暂无数据</string>
     <string name="search_tint">发现更多干货</string>
     <string name="action_search">搜索</string>
-    <string name="about_play_android">玩Android V1.1.1</string>
+    <string name="about_play_android">玩Android V1.1.1\n</string>
     <string name="about_sites_title">网站内容</string>
     <string name="hot_search">热搜</string>
     <string name="login">登录</string>
@@ -54,16 +56,33 @@
     \t\t\t\t关于网站的排版\n
     \t\t\t\t关于新增常用网址以及工具\n
     \t\t\t\t未来你希望增加的工具等
+        \n
+        \n
 </string>
     <string name="about_sites_content_two">
     \t\t可以在
 </string>
     <string name="about_sites_content_three">https://github.com/hongyangAndroid/wanandroid</string>
-    <string name="about_sites_content_four">项目中以issue形式提出,我将及时跟进。
+    <string name="about_sites_content_four">/xueandroid项目中以issue形式提出,我将及时跟进。
     \n\n\t\t如果您希望长期关注本站，可以加入我们的QQ\n群：591683946
 </string>
-    <string name="about_sites_content_five">\n源码位置
+    <string name="about_sites_content_five">\n源码位置\n
 </string>
     <string name="about_sites_content_six">\t\t本软件开源，如果你发现任何错误，不要犹豫，
     马上点击GitHub，在上面发起issue或者提交pullrequest</string>
+
+    <!--setting-->
+    <string name="setting_clear">清理缓存</string>
+    <string name="setting_normal">基本设置</string>
+    <string name="setting_cache">是否显示首页置顶文章</string>
+    <string name="setting_image">无图模式</string>
+    <string name="setting_feedback">主题颜色</string>
+    <string name="setting_other">其他设置</string>
+    <string name="setting_night">自动切换夜间模式</string>
+    <string name="navigation_color">导航栏颜色</string>
+    <string name="setting_about">关于</string>
+    <string name="setting_code">版本</string>
+    <string name="setting_log">更新日志</string>
+    <string name="setting_yuan">源代码</string>
+    <string name="setting_shen">版本声明</string>
 </resources>

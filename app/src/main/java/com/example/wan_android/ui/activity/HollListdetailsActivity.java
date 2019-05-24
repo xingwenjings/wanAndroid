@@ -98,7 +98,7 @@ public class HollListdetailsActivity extends BaseActivity<HollListdetailsView, H
     }
 
     private void initcoll() {
-        
+
     }
 
     private void iniliulan() {

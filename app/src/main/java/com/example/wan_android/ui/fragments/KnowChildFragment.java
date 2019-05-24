@@ -16,7 +16,10 @@ import com.example.wan_android.base.Constants;
 import com.example.wan_android.bean.KnowArticleBean;
 import com.example.wan_android.presenter.KnowArticlePresenter;
 import com.example.wan_android.ui.activity.KnowWebViewActivity;
+import com.example.wan_android.ui.activity.LoginActivity;
 import com.example.wan_android.ui.adapters.RecKnowArticleAdapter;
+import com.example.wan_android.util.SpUtil;
+import com.example.wan_android.util.ToastUtil;
 import com.example.wan_android.view.KnowArticleView;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
@@ -92,6 +95,28 @@ public class KnowChildFragment extends BaseFragment<KnowArticleView, KnowArticle
                 startActivity(intent);
             }
         });
+        adapter.setOnItemUrl(new RecKnowArticleAdapter.OnItemUrl() {
+            @Override
+            public void setLike(int position) {
+
+                if ((boolean) SpUtil.getParam(Constants.LOGIN, false)) {
+                   mPresenter.add(list.get(position).getId()+"");
+                } else {
+                    ToastUtil.showShort("请先登录");
+                    startActivity(new Intent(getActivity(), LoginActivity.class));
+                }
+            }
+
+            @Override
+            public void setDislike(int id) {
+                if ((boolean) SpUtil.getParam(Constants.LOGIN, false)) {
+                    mPresenter.dis(list.get(id).getId()+"");
+                } else {
+                    ToastUtil.showShort("请先登录");
+                    startActivity(new Intent(getActivity(), LoginActivity.class));
+                }
+            }
+        });
     }
 
     @Override
@@ -106,5 +131,15 @@ public class KnowChildFragment extends BaseFragment<KnowArticleView, KnowArticle
         adapter.notifyDataSetChanged();
         srl.finishRefresh();
         srl.finishLoadMore();
+    }
+
+    @Override
+    public void success(String bean) {
+
+    }
+
+    @Override
+    public void fail(String msg) {
+
     }
 }

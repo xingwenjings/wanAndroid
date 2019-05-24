@@ -118,6 +118,7 @@ public class ProjecctClassifyFragment extends BaseFragment<ProjectClassifyView, 
                 Bundle bundle = new Bundle();
                 bundle.putString(Constants.LINK,mList.get(position).getLink());
                 bundle.putString(Constants.TITLE,mList.get(position).getTitle());
+                bundle.putInt(Constants.ID,mList.get(position).getId());
                 intent.putExtras(bundle);
                 getActivity().startActivity(intent);
             }

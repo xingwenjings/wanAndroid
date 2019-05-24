@@ -1,5 +1,7 @@
 package com.example.wan_android.ui.activity;
 
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.text.TextUtils;
 import android.view.View;
@@ -7,20 +9,24 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
 import com.example.wan_android.R;
 import com.example.wan_android.base.BaseActivity;
 import com.example.wan_android.base.Constants;
 import com.example.wan_android.bean.LoginInfo;
 import com.example.wan_android.net.ApiServer;
+import com.example.wan_android.net.KnowledgeApi;
 import com.example.wan_android.presenter.LoginPresenter;
 import com.example.wan_android.util.SpUtil;
 import com.example.wan_android.util.ToastUtil;
 import com.example.wan_android.view.LoginView;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class LoginActivity extends BaseActivity<LoginView, LoginPresenter> implements LoginView {
+
 
     @BindView(R.id.et_name)
     EditText mEtName;
@@ -30,30 +36,20 @@ public class LoginActivity extends BaseActivity<LoginView, LoginPresenter> imple
     EditText mEtPsw;
     @BindView(R.id.et_psw_wrapper)
     TextInputLayout mEtPswWrapper;
+    @BindView(R.id.reg_repsw)
+    EditText mRegRepsw;
+    @BindView(R.id.reg_repsw_wrapper)
+    TextInputLayout mRegRepswWrapper;
     @BindView(R.id.btn_login)
     Button mBtnLogin;
     @BindView(R.id.tv_go_reg)
     TextView mTvGoReg;
     @BindView(R.id.login_group)
     LinearLayout mLoginGroup;
-    @BindView(R.id.reg_name)
-    EditText mRegName;
-    @BindView(R.id.reg_name_wrapper)
-    TextInputLayout mRegNameWrapper;
-    @BindView(R.id.reg_psw)
-    EditText mRegPsw;
-    @BindView(R.id.reg_psw_wrapper)
-    TextInputLayout mRegPswWrapper;
-    @BindView(R.id.reg_repsw)
-    EditText mRegRepsw;
-    @BindView(R.id.reg_repsw_wrapper)
-    TextInputLayout mRegRepswWrapper;
-    @BindView(R.id.btn_reg)
-    Button mBtnReg;
     @BindView(R.id.tv_go_login)
     TextView mTvGoLogin;
-    @BindView(R.id.reg_group)
-    LinearLayout mRegGroup;
+    @BindView(R.id.btn_reg)
+    Button mBtnReg;
 
     @Override
     protected LoginPresenter initPresenter() {
@@ -66,13 +62,22 @@ public class LoginActivity extends BaseActivity<LoginView, LoginPresenter> imple
     }
 
     @Override
+    protected void initView() {
+        String judge = getIntent().getStringExtra("judge");
+        if (!TextUtils.isEmpty(judge)) {
+            ToastUtil.showShort("请先登录");
+        }
+    }
+
+    @Override
     public void onSuccess(LoginInfo bean) {
         hideLoading();
-        //保存用户信息，并将登录状态标记为已登录
-        SpUtil.setParam(Constants.USERNAME, bean.getData().getUsername());
-        SpUtil.setParam(Constants.TOKEN, bean.getData().getId());
+        SpUtil.setParam(Constants.USERNAME, bean.getData().getUsername());;
+        SpUtil.setParam(Constants.PASSWORD, mEtPsw.getText().toString());
         SpUtil.setParam(Constants.LOGIN, true);
-        setResult(ApiServer.SUCCESS_CODE);
+        Intent intent = new Intent();
+        intent.putExtra("name",bean.getData().getUsername());
+        setResult(ApiServer.SUCCESS_CODE,intent);
         finish();
     }
 
@@ -80,29 +85,39 @@ public class LoginActivity extends BaseActivity<LoginView, LoginPresenter> imple
     public void onFail(String msg) {
 
     }
+
     @OnClick({R.id.btn_login, R.id.tv_go_reg, R.id.btn_reg, R.id.tv_go_login})
     public void onClick(View v) {
         switch (v.getId()) {
             default:
                 break;
             case R.id.btn_login:
+                mBtnLogin.setVisibility(View.VISIBLE);
+                mBtnReg.setVisibility(View.GONE);
                 String name = mEtName.getText().toString().trim();
                 String psw = mEtPsw.getText().toString().trim();
-                if (!TextUtils.isEmpty(name) && !TextUtils.isEmpty(psw)){
-                    mPresenter.login(name,psw);
-
+                if (!TextUtils.isEmpty(name) && !TextUtils.isEmpty(psw)) {
+                    mPresenter.login(name, psw);
                     showLoading();
-                }else {
+                } else {
                     ToastUtil.showShort("用户名或密码不能为空");
                 }
                 break;
             case R.id.tv_go_reg:
-                mLoginGroup.setVisibility(View.GONE);
-                mRegGroup.setVisibility(View.VISIBLE);
+                mEtName.setText("");
+                mEtPsw.setText("");
+                mRegRepsw.setText("");
+                mRegRepswWrapper.setVisibility(View.VISIBLE);
+                mTvGoReg.setVisibility(View.GONE);
+                mTvGoLogin.setVisibility(View.VISIBLE);
+                mBtnReg.setVisibility(View.VISIBLE);
+                mBtnLogin.setVisibility(View.GONE);
                 break;
             case R.id.btn_reg:
-                String regName = mRegName.getText().toString().trim();
-                String regPsw = mRegPsw.getText().toString().trim();
+                mBtnReg.setVisibility(View.VISIBLE);
+                mBtnLogin.setVisibility(View.GONE);
+                String regName = mEtName.getText().toString().trim();
+                String regPsw = mEtPsw.getText().toString().trim();
                 String regRepsw = mRegRepsw.getText().toString().trim();
                 if (!TextUtils.isEmpty(regName) && !TextUtils.isEmpty(regPsw)){
                     if (regPsw.equals(regRepsw)){
@@ -116,9 +131,16 @@ public class LoginActivity extends BaseActivity<LoginView, LoginPresenter> imple
                 }
                 break;
             case R.id.tv_go_login:
-                mLoginGroup.setVisibility(View.VISIBLE);
-                mRegGroup.setVisibility(View.GONE);
+                mEtName.setText("");
+                mEtPsw.setText("");
+                mRegRepsw.setText("");
+                mRegRepswWrapper.setVisibility(View.GONE);
+                mTvGoReg.setVisibility(View.VISIBLE);
+                mTvGoLogin.setVisibility(View.GONE);
+                mBtnReg.setVisibility(View.GONE);
+                mBtnLogin.setVisibility(View.VISIBLE);
                 break;
         }
     }
+
 }

@@ -144,6 +144,7 @@ public class NavigationFragment extends BaseFragment<NaviView, NaviPresenter> im
                 Intent intent = new Intent(getContext(), NaviWebViewActivity.class);
                 intent.putExtra(Constants.LINK,link);
                 intent.putExtra(Constants.NAME,title);
+                intent.putExtra(Constants.ID,bean.getId());
                 startActivity(intent);
             }
         });

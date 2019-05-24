@@ -108,13 +108,13 @@
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/s_re"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="180dp"
                 android:padding="10dp"></android.support.v7.widget.RecyclerView>
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="45dp">
+                android:layout_marginTop="25dp">
 
                 <TextView
                     android:id="@+id/shou_tv"
@@ -123,24 +123,33 @@
                     android:gravity="center_vertical"
                     android:text="搜索历史"
                     android:textColor="@color/blue"
-                    android:textSize="20sp" />
+                    android:textSize="@dimen/sp_16" />
 
                 <TextView
+                    android:id="@+id/tv_clear"
                     android:layout_width="wrap_content"
                     android:layout_height="45dp"
                     android:layout_alignParentRight="true"
                     android:gravity="center_vertical"
                     android:text="清空"
-                    android:textSize="20sp" />
+                    android:textSize="@dimen/sp_16" />
 
                 <TextView
+                    android:id="@+id/tv_search_money"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/shou_tv"
                     android:layout_marginTop="10dp"
                     android:gravity="center_horizontal"
-                    android:text="💩快来搜点干货吧🐮"
+                    android:text="快来搜点干货吧"
                     android:textSize="@dimen/sp_16" />
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rlv"
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@id/shou_tv"
+                    android:layout_marginTop="10dp"/>
 
             </RelativeLayout>
         </LinearLayout>
