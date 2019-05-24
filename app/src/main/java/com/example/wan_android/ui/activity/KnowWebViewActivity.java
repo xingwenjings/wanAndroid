@@ -1,5 +1,7 @@
 package com.example.wan_android.ui.activity;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CoordinatorLayout;
@@ -16,6 +18,8 @@ import com.example.wan_android.R;
 import com.example.wan_android.base.BaseActivity;
 import com.example.wan_android.base.Constants;
 import com.example.wan_android.presenter.EmptyPresenter;
+import com.example.wan_android.util.ShareUtil;
+import com.example.wan_android.util.SpUtil;
 import com.example.wan_android.view.EmptyView;
 import com.just.library.AgentWeb;
 import com.just.library.ChromeClientCallbackManager;
@@ -95,13 +99,24 @@ public class KnowWebViewActivity extends BaseActivity<EmptyView, EmptyPresenter>
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case 100:
+                ShareUtil.shareText(this, "玩Android分享\n 【" + name + "】 ：\n" + link
+                        , "");
                 break;
             case 200:
                 break;
             case 300:
+                getBrowser();
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void getBrowser() {
+        Intent intent = new Intent();
+        intent.setAction("android.intent.action.VIEW");
+        Uri content_url = Uri.parse(link);
+        intent.setData(content_url);
+        startActivity(intent);
     }
 
     @Override

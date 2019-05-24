@@ -31,6 +31,11 @@
     <string name="loade">正在加载中...</string>
     <string name="collect">收藏</string>
     <string name="not_data">暂无数据</string>
+    <string name="search_tint">发现更多干货</string>
+    <string name="action_search">搜索</string>
+    <string name="about_play_android">玩Android V1.1.1</string>
+    <string name="about_sites_title">网站内容</string>
+    <string name="hot_search">热搜</string>
     <string name="login">登录</string>
     <string name="username">用户名</string>
     <string name="psw">密码</string>
@@ -38,4 +43,29 @@
     <string name="go_login">已有账号？去登录</string>
     <string name="repsw">密码</string>
     <string name="go_reg">没有账号?去注册</string>
+    <string name="string_unLogin">退出登录</string>
+    <string name="about_sites_content_one">\t\t本网站每天新增20～30篇优质文章，并加
+    \n入到现有的知识分类中，力求整理出一份优质而又
+    \n详尽的知识体系，闲暇时间不放上来学习下
+    \n知识；除此以外，并为大家提供平时开发过
+    \n程中常用的工具以及常用的网址导航。\n\n
+    \t\t当然这只是我们目前的功能，未来我们将
+    \n提供更多更加便捷的功能···
+    \n\n如果您有任何好的建议：
+    \n\n\n
+    \t\t\t\t关于网站的排版\n
+    \t\t\t\t关于新增常用网址以及工具\n
+    \t\t\t\t未来你希望增加的工具等
+</string>
+    <string name="about_sites_content_two">
+    \t\t可以在
+</string>
+    <string name="about_sites_content_three">https://github.com/hongyangAndroid/wanandroid</string>
+    <string name="about_sites_content_four">项目中以issue形式提出,我将及时跟进。
+    \n\n\t\t如果您希望长期关注本站，可以加入我们的QQ\n群：591683946
+</string>
+    <string name="about_sites_content_five">\n源码位置
+</string>
+    <string name="about_sites_content_six">\t\t本软件开源，如果你发现任何错误，不要犹豫，
+    马上点击GitHub，在上面发起issue或者提交pullrequest</string>
 </resources>

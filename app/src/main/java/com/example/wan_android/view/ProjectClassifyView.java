@@ -9,7 +9,7 @@ import com.example.wan_android.bean.ListBean;
  * 时间：2019/5/21
  * 项目工作空间：wanAndroid
  */
-public interface ProjectClassifyView extends BaseMvpView{
+public interface ProjectClassifyView extends BaseMvpView {
 
     void setData(ListBean bean);
 }

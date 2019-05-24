@@ -130,10 +130,17 @@ public class MainActivity extends BaseActivity<EmptyView, EmptyPresenter> implem
                         startActivity(new Intent(MainActivity.this,SettingsActivity.class));
                         break;
                     case R.id.night:
-                        startActivity(new Intent(MainActivity.this,NightActivity.class));
+
                         break;
                     case R.id.todo:
-                        startActivity(new Intent(MainActivity.this,TodoActivity.class));
+                        boolean flag1 = (boolean) SpUtil.getParam(Constants.LOGIN, false);
+                        if (flag1){
+                            startActivity(new Intent(MainActivity.this,TodoActivity.class));
+                        }else {
+                            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                            intent.putExtra("judge", "judge");
+                            startActivity(intent);
+                        }
                         break;
                     case R.id.me:
                         startActivity(new Intent(MainActivity.this,MeActivity.class));

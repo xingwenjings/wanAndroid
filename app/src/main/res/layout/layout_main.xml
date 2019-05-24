@@ -1,20 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
+    android:orientation="vertical"
     android:layout_height="match_parent">
+    <android.support.design.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fitsSystemWindows="false">
+        android:fitsSystemWindows="false"
+        android:theme="@style/AppTheme.AppBarOverlay"
+        app:elevation="@dimen/dp_0">
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_44"
             android:background="@color/colorAccent"
-            app:layout_scrollFlags="scroll|enterAlways"></android.support.v7.widget.Toolbar>
+            app:layout_scrollFlags="scroll|enterAlways">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="nihao"
+                    android:layout_alignParentLeft="true"
+                    android:textSize="@dimen/sp_16"
+                    android:textColor="@color/c_ffffff"
+                    android:id="@+id/tv"/>
+                <ImageButton
+                    android:layout_width="@dimen/dp_20"
+                    android:layout_height="@dimen/dp_20"
+                    android:id="@+id/tool_img"
+                    android:background="@mipmap/ic_search"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/dp_15"/>
+            </RelativeLayout>
+        </android.support.v7.widget.Toolbar>
+
     </android.support.design.widget.AppBarLayout>
 
     <FrameLayout
@@ -22,7 +49,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/tab"
-        android:layout_below="@id/appbar"></FrameLayout>
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:layout_below="@id/toolbar"></FrameLayout>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
@@ -33,7 +61,7 @@
         android:layout_marginBottom="@dimen/dp_70"
         android:src="@mipmap/icon_up_arrow"
         app:backgroundTint="@color/colorAccent"
-        app:layout_behavior="com.example.wan_android.widght.ScaleDownShowBehavior" />
+        app:layout_behavior="com.example.wan_android.widght.ScrollAwareFABBehavior" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -49,5 +77,6 @@
             app:tabIndicatorHeight="@dimen/dp_0"
             app:tabMode="fixed"></android.support.design.widget.TabLayout>
     </RelativeLayout>
+    </android.support.design.widget.CoordinatorLayout>
+</LinearLayout>
 
-</android.support.design.widget.CoordinatorLayout>

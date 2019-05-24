@@ -71,7 +71,7 @@ public class LoginActivity extends BaseActivity<LoginView, LoginPresenter> imple
     public void onSuccess(LoginInfo bean) {
         hideLoading();
         //�����û���Ϣ��������¼״̬���Ϊ�ѵ�¼
-        SpUtil.setParam(Constants.USERNAME, bean.getData().getUsername());
+        SpUtil.setParam(Constants.USERNAME, bean.getData().getUsername());;
         SpUtil.setParam(Constants.PASSWORD, mEtPsw.getText().toString());
         SpUtil.setParam(Constants.LOGIN, true);
         setResult(ApiServer.SUCCESS_CODE);
@@ -96,8 +96,9 @@ public class LoginActivity extends BaseActivity<LoginView, LoginPresenter> imple
                 if (!TextUtils.isEmpty(name) && !TextUtils.isEmpty(psw)) {
                     mPresenter.login(name, psw);
                     showLoading();
+               
                 } else {
-                    ToastUtil.showShort("�û��������벻��Ϊ��");
+                    ToastUtil.showShort("用户名或密码不能为空");
                 }
                 break;
             case R.id.tv_go_reg:
@@ -116,15 +117,15 @@ public class LoginActivity extends BaseActivity<LoginView, LoginPresenter> imple
                 String regName = mEtName.getText().toString().trim();
                 String regPsw = mEtPsw.getText().toString().trim();
                 String regRepsw = mRegRepsw.getText().toString().trim();
-                if (!TextUtils.isEmpty(regName) && !TextUtils.isEmpty(regPsw)) {
-                    if (regPsw.equals(regRepsw)) {
-                        mPresenter.register(regName, regPsw, regRepsw);
+                if (!TextUtils.isEmpty(regName) && !TextUtils.isEmpty(regPsw)){
+                    if (regPsw.equals(regRepsw)){
+                        mPresenter.register(regName,regPsw,regRepsw);
                         showLoading();
-                    } else {
-                        ToastUtil.showShort("�����������벻һ�£�����������");
+                    }else {
+                        ToastUtil.showShort("两次密码输入不一致，请重新输入");
                     }
-                } else {
-                    ToastUtil.showShort("�û��������벻��Ϊ��");
+                }else {
+                    ToastUtil.showShort("用户名或密码不能为空");
                 }
                 break;
             case R.id.tv_go_login:

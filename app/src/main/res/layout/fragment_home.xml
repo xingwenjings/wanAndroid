@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/home"
+    android:background="@color/white"
     android:orientation="vertical"
     tools:context=".ui.fragments.HomeFragment">
     <com.scwang.smartrefresh.layout.SmartRefreshLayout
@@ -19,5 +20,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         />
+        <com.scwang.smartrefresh.header.WaterDropHeader
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
     </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 </LinearLayout>
