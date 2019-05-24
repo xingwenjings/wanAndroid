@@ -152,6 +152,12 @@ public class MainActivity extends BaseActivity<EmptyView, EmptyPresenter> implem
                 return false;
             }
         });
+        mToolImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this,SearchActivity.class));
+            }
+        });
     }
 
 
@@ -246,7 +252,7 @@ public class MainActivity extends BaseActivity<EmptyView, EmptyPresenter> implem
                 mainFl.scrollBy(0, 0);
                 break;
             case R.id.tool_img:
-                startActivity(new Intent(this,SearchActivity.class));
+
                 break;
         }
     }
