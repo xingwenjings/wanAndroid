@@ -29,6 +29,8 @@
 
     <color name="title_black">#222222</color>
     <color name="comment_line">#dddddd</color>
+    <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
     <color name="light_deep_red">#f9382a</color>
     <color name="light_red">#e26d2e</color>
     <color name="deep_red">#dc3b1f</color>

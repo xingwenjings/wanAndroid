@@ -68,7 +68,7 @@ public class LoginActivity extends BaseActivity<LoginView, LoginPresenter> imple
     @Override
     public void onSuccess(LoginInfo bean) {
         hideLoading();
-        //±£´æÓÃ»§ĞÅÏ¢£¬²¢½«µÇÂ¼×´Ì¬±ê¼ÇÎªÒÑµÇÂ¼
+        //ä¿å­˜ç”¨æˆ·ä¿¡æ¯ï¼Œå¹¶å°†ç™»å½•çŠ¶æ€æ ‡è®°ä¸ºå·²ç™»å½•
         SpUtil.setParam(Constants.USERNAME, bean.getData().getUsername());
         SpUtil.setParam(Constants.TOKEN, bean.getData().getId());
         SpUtil.setParam(Constants.LOGIN, true);
@@ -93,7 +93,7 @@ public class LoginActivity extends BaseActivity<LoginView, LoginPresenter> imple
 
                     showLoading();
                 }else {
-                    ToastUtil.showShort("ÓÃ»§Ãû»òÃÜÂë²»ÄÜÎª¿Õ");
+                    ToastUtil.showShort("ç”¨æˆ·åæˆ–å¯†ç ä¸èƒ½ä¸ºç©º");
                 }
                 break;
             case R.id.tv_go_reg:
@@ -109,10 +109,10 @@ public class LoginActivity extends BaseActivity<LoginView, LoginPresenter> imple
                         mPresenter.register(regName,regPsw,regRepsw);
                         showLoading();
                     }else {
-                        ToastUtil.showShort("Á½´ÎÃÜÂëÊäÈë²»Ò»ÖÂ£¬ÇëÖØĞÂÊäÈë");
+                        ToastUtil.showShort("ä¸¤æ¬¡å¯†ç è¾“å…¥ä¸ä¸€è‡´ï¼Œè¯·é‡æ–°è¾“å…¥");
                     }
                 }else {
-                    ToastUtil.showShort("ÓÃ»§Ãû»òÃÜÂë²»ÄÜÎª¿Õ");
+                    ToastUtil.showShort("ç”¨æˆ·åæˆ–å¯†ç ä¸èƒ½ä¸ºç©º");
                 }
                 break;
             case R.id.tv_go_login:
