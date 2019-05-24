@@ -16,7 +16,10 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,6 +30,7 @@ import com.example.wan_android.base.BaseActivity;
 import com.example.wan_android.base.BaseFragment;
 import com.example.wan_android.base.Constants;
 
+import com.example.wan_android.base.Constants;
 import com.example.wan_android.net.KnowledgeApi;
 import com.example.wan_android.presenter.EmptyPresenter;
 import com.example.wan_android.ui.fragments.HomeFragment;
@@ -38,6 +42,7 @@ import com.example.wan_android.util.SpUtil;
 import com.example.wan_android.util.UIModeUtil;
 import com.example.wan_android.util.UIUtils;
 import com.example.wan_android.view.EmptyView;
+import com.example.wan_android.widght.ScrollAwareFABBehavior;
 
 import java.util.ArrayList;
 
@@ -57,6 +62,10 @@ public class MainActivity extends BaseActivity<EmptyView, EmptyPresenter> implem
     NavigationView nav;
     @BindView(R.id.fab)
     FloatingActionButton fab;
+    @BindView(R.id.tv)
+    TextView tv;
+    @BindView(R.id.tool_img)
+    ImageButton tool_img;
     private ArrayList<BaseFragment> fragments;
     private FragmentManager mManager;
     private int mLastFragmentPosition = 0;
@@ -82,9 +91,10 @@ public class MainActivity extends BaseActivity<EmptyView, EmptyPresenter> implem
 
     @Override
     protected void initView() {
+       
         fragments = new ArrayList<>();
         //设置toolbar功能
-        toolbar.setTitle(R.string.play);
+        tv.setText(R.string.play);
         toolbar.setNavigationIcon(null);
         toolbar.setTitleTextColor(getResources().getColor(R.color.white));
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, dl, toolbar, R.string.app_name, R.string.app_name);
@@ -106,6 +116,9 @@ public class MainActivity extends BaseActivity<EmptyView, EmptyPresenter> implem
         //解决侧滑菜单图标不显示问题
         nav.setItemIconTintList(null);
         
+
+
+
     }
 
     @Override
@@ -119,26 +132,39 @@ public class MainActivity extends BaseActivity<EmptyView, EmptyPresenter> implem
         nav.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                
                 switch (menuItem.getItemId()) {
                     case R.id.collect:
+                       
                         startActivity(new Intent(MainActivity.this, CollectActivity.class));
                         break;
                     case R.id.settings:
+                       
                         startActivity(new Intent(MainActivity.this, SettingsActivity.class));
                         break;
                     case R.id.night:
                         initNight();
                         break;
                     case R.id.todo:
+                       
                         startActivity(new Intent(MainActivity.this, TodoActivity.class));
                         break;
                     case R.id.me:
+                       
                         startActivity(new Intent(MainActivity.this, MeActivity.class));
                         break;
                 }
                 return false;
             }
         });
+        tool_img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, SearchActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
     private void initNight() {
@@ -155,6 +181,7 @@ public class MainActivity extends BaseActivity<EmptyView, EmptyPresenter> implem
     }
 
     private void initFragment() {
+        
         mManager = getSupportFragmentManager();
         fragments = new ArrayList<>();
         fragments.add(new HomeFragment());
@@ -164,6 +191,7 @@ public class MainActivity extends BaseActivity<EmptyView, EmptyPresenter> implem
         fragments.add(new ProjectFragment());
 
         FragmentTransaction fragmentTransaction = mManager.beginTransaction();
+        
         fragmentTransaction.add(R.id.main_fl, fragments.get(0));
         fragmentTransaction.commit();
     }
@@ -173,25 +201,31 @@ public class MainActivity extends BaseActivity<EmptyView, EmptyPresenter> implem
         tab.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
+              
                 switch (tab.getPosition()) {
                     case 0:
-                        toolbar.setTitle(R.string.play);
+                        
+                        tv.setText(R.string.play);
                         switchFragment(TYPE_HOME);
                         break;
                     case 1:
-                        toolbar.setTitle(R.string.knowledge);
+                       
+                        tv.setText(R.string.knowledge);
                         switchFragment(TYPE_KNOWLEDGE);
                         break;
                     case 2:
-                        toolbar.setTitle(R.string.wechat);
+                      
+                        tv.setText(R.string.wechat);
                         switchFragment(TYPE_WECHAT);
                         break;
                     case 3:
-                        toolbar.setTitle(R.string.navigation);
+                       
+                        tv.setText(R.string.navigation);
                         switchFragment(TYPE_NAVIGATION);
                         break;
                     case 4:
-                        toolbar.setTitle(R.string.project);
+                        
+                        tv.setText(R.string.project);
                         switchFragment(TYPE_PROJECT);
                         break;
                 }
@@ -227,14 +261,18 @@ public class MainActivity extends BaseActivity<EmptyView, EmptyPresenter> implem
 
     @Override
     public void onClick(View v) {
+     
         switch (v.getId()) {
             case R.id.tv_login:
                 if (tvLogin.getText().toString().trim().equals("登录"))
                     startActivityForResult(new Intent(this, LoginActivity.class), 100);
                 break;
             case R.id.fab:
+            
+                mainFl.scrollTo(0,0);
                 mainFl.scrollBy(0, 0);
                 break;
+
         }
     }
     @Override
