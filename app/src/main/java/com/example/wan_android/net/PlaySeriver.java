@@ -1,5 +1,6 @@
 package com.example.wan_android.net;
 
+import com.example.wan_android.bean.SearchBean;
 import com.example.wan_android.bean.WeChatBean;
 import com.example.wan_android.bean.WeChildBean;
 
@@ -22,4 +23,10 @@ public interface PlaySeriver {
 
     @GET("wxarticle/list/{id}/{page}/json")
     Observable<WeChildBean> getChildData(@Path("id") int id,@Path("page") int page);
+
+    //搜索
+    //http://www.wanandroid.com//hotkey/json
+    String api_shou = "http://www.wanandroid.com///hotkey/";
+    @GET("json")
+    Observable<SearchBean> getSearch();
 }

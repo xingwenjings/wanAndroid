@@ -102,7 +102,7 @@ public class KnowChildFragment extends BaseFragment<KnowArticleView, KnowArticle
                 if ((boolean) SpUtil.getParam(Constants.LOGIN, false)) {
                    mPresenter.add(list.get(position).getId()+"");
                 } else {
-                    ToastUtil.showShort("ÇëÏÈµÇÂ¼");
+                    ToastUtil.showShort("è¯·å…ˆç™»å½•");
                     startActivity(new Intent(getActivity(), LoginActivity.class));
                 }
             }

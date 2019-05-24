@@ -106,15 +106,6 @@ public class HomeFragment extends BaseFragment<HollView, HollPresenter> implemen
         mhollAdapet.setOnItemClickListener(new HollAdapet.OnItemClickListener() {
             @Override
             public void OnItemClick(View v, int position) {
-                Intent intent = new Intent(getContext(), HollZhidingdetailsActivity.class);
-                intent.putExtra(Constants.TITLE,mhollZhiding.get(position).getTitle());
-                intent.putExtra(Constants.URL,mhollZhiding.get(position).getLink());
-                getContext().startActivity(intent);
-            }
-        });
-        mhollAdapet.setOnListItemClickListener(new HollAdapet.OnItemClickListener() {
-            @Override
-            public void OnItemClick(View v, int position) {
                 Intent intent = new Intent(getContext(), HollListdetailsActivity.class);
                 intent.putExtra(Constants.TITLE,mholllist.get(position).getTitle());
                 intent.putExtra(Constants.URL,mholllist.get(position).getLink());

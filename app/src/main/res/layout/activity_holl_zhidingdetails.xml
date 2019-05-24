@@ -9,7 +9,6 @@
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_60"
-        android:background="@color/c_FA6A13"
         tools:ignore="MissingConstraints">
         <android.support.v7.widget.Toolbar
             android:id="@+id/toobar"

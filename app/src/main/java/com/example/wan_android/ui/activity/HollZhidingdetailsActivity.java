@@ -11,11 +11,14 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.wan_android.R;
 import com.example.wan_android.base.BaseActivity;
 import com.example.wan_android.base.Constants;
 import com.example.wan_android.presenter.HollZhidingdetailsPresenter;
+import com.example.wan_android.util.Logger;
+import com.example.wan_android.util.SpUtil;
 import com.example.wan_android.util.UIUtils;
 import com.example.wan_android.view.HollZhidingdetailsView;
 import com.just.library.AgentWeb;
@@ -49,12 +52,13 @@ public class HollZhidingdetailsActivity extends BaseActivity<HollZhidingdetailsV
     }
 
     protected void initView() {
+        Toast.makeText(this, "跳过来了", Toast.LENGTH_SHORT).show();
         mToobar.setTitle("");
         setSupportActionBar(mToobar);
         mTeToolbar.setSelected(true);
         mTeToolbar.setText(UIUtils.getString(R.string.loade));
-        String title = getIntent().getStringExtra(Constants.TITLE);
-        murl = getIntent().getStringExtra(Constants.URL);
+        murl = (String) SpUtil.getParam(Constants.URL, "");
+        String title = (String) SpUtil.getParam(Constants.TITLE, "");
         mTeToolbar.setText(title);
         ChromeClientCallbackManager.ReceivedTitleCallback mCallback;
         mCallback = null;
@@ -138,11 +142,4 @@ public class HollZhidingdetailsActivity extends BaseActivity<HollZhidingdetailsV
         super.onDestroy();
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO:OnCreate Method has been created, run ButterKnife again to generate code
-        setContentView(R.layout.activity_holl_zhidingdetails);
-        ButterKnife.bind(this);
-    }
 }

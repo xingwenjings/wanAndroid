@@ -90,10 +90,12 @@ public class LoginActivity extends BaseActivity<LoginView, LoginPresenter> imple
             case R.id.btn_login:
                 String name = mEtName.getText().toString().trim();
                 String psw = mEtPsw.getText().toString().trim();
+               
                 if (!TextUtils.isEmpty(name) && !TextUtils.isEmpty(psw)) {
                     mPresenter.login(name, psw);
 
                     showLoading();
+               
                 } else {
                     ToastUtil.showShort("用户名或密码不能为空");
                 }
@@ -106,13 +108,16 @@ public class LoginActivity extends BaseActivity<LoginView, LoginPresenter> imple
                 String regName = mRegName.getText().toString().trim();
                 String regPsw = mRegPsw.getText().toString().trim();
                 String regRepsw = mRegRepsw.getText().toString().trim();
+
                 if (!TextUtils.isEmpty(regName) && !TextUtils.isEmpty(regPsw)) {
                     if (regPsw.equals(regRepsw)) {
                         mPresenter.register(regName, regPsw, regRepsw);
                         showLoading();
+                   
                     } else {
                         ToastUtil.showShort("两次密码输入不一致，请重新输入");
                     }
+               
                 } else {
                     ToastUtil.showShort("用户名或密码不能为空");
                 }

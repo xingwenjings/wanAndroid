@@ -1,7 +1,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorAccent</item>
         <item name="colorPrimaryDark">@color/colorAccent</item>
@@ -15,7 +15,7 @@
         <item name="android:backgroundDimEnabled">false</item>
 
     </style>
-    <style name="FullScreen" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="FullScreen" parent="Theme.AppCompat.DayNight.NoActionBar">
         <!--全屏的界面-->
         <item name="android:windowFullscreen">true</item>
     </style>
@@ -35,15 +35,23 @@
         <item name="android:colorControlNormal" tools:targetApi="lollipop">#ffffff</item>
     </style>
 
-    <style name="AppThemes" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="AppThemes" parent="Theme.AppCompat.DayNight.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorAccent</item>
         <item name="colorPrimaryDark">@color/white</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 <!--menu三个点变白-->
-    <style name="ToolBarTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="ToolBarTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
         <item name="colorButtonNormal">@android:color/white</item>
         <item name="colorControlNormal">@android:color/white</item>
+    </style>
+    <!--搜索框的-->
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="style_float_btn">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">bottom|end</item>
     </style>
 </resources>

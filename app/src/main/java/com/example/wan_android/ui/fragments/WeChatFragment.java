@@ -88,4 +88,5 @@ public class WeChatFragment extends BaseFragment<WeChatView, WeChatPresenter> im
     public void getWeChatField(String error) {
         ToastUtil.showShort("WeChatFragment"+error);
     }
+
 }
