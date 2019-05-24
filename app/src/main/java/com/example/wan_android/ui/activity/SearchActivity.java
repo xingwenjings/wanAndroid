@@ -110,7 +110,7 @@ public class SearchActivity extends BaseActivity<SearchView, SearchPresenter> im
                 mListDataSave.setDataList(Constants.LIST_SEARCH, mSearchList);
                 Intent intent = new Intent(SearchActivity.this, SearchChildActivity.class);
                 intent.putExtra("query", name);
-                startActivityForResult(intent,100);
+                startActivityForResult(intent,200);
             }
         });
     }
@@ -200,6 +200,9 @@ public class SearchActivity extends BaseActivity<SearchView, SearchPresenter> im
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 100 && resultCode == 200) {
+            mSearchList.clear();
+            BingdingSearchRlv();
+        }if (requestCode == 200 && resultCode == 200) {
             mSearchList.clear();
             BingdingSearchRlv();
         }
