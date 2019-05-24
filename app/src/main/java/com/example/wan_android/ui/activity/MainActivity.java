@@ -1,12 +1,7 @@
 package com.example.wan_android.ui.activity;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.res.Configuration;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -19,21 +14,13 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
-
 import android.widget.TextView;
 
 import com.example.wan_android.R;
 import com.example.wan_android.base.BaseActivity;
 import com.example.wan_android.base.BaseFragment;
-import com.example.wan_android.base.Constants;
-
 import com.example.wan_android.base.Constants;
 import com.example.wan_android.net.KnowledgeApi;
 import com.example.wan_android.presenter.EmptyPresenter;
@@ -43,17 +30,18 @@ import com.example.wan_android.ui.fragments.NavigationFragment;
 import com.example.wan_android.ui.fragments.ProjectFragment;
 import com.example.wan_android.ui.fragments.WeChatFragment;
 import com.example.wan_android.util.SpUtil;
-import com.example.wan_android.util.UIModeUtil;
 import com.example.wan_android.util.UIUtils;
 import com.example.wan_android.view.EmptyView;
-import com.example.wan_android.widght.ScrollAwareFABBehavior;
 
 import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class MainActivity extends BaseActivity<EmptyView, EmptyPresenter> implements EmptyView, View.OnClickListener {
+    @BindView(R.id.tv)
+    TextView tv;
     @BindView(R.id.toolbar)
     Toolbar toolbar;
     @BindView(R.id.main_fl)
@@ -66,22 +54,17 @@ public class MainActivity extends BaseActivity<EmptyView, EmptyPresenter> implem
     NavigationView nav;
     @BindView(R.id.fab)
     FloatingActionButton fab;
-    @BindView(R.id.tv)
-    TextView tv;
     @BindView(R.id.tool_img)
-    ImageButton tool_img;
+    ImageButton mToolImg;
     private ArrayList<BaseFragment> fragments;
     private FragmentManager mManager;
     private int mLastFragmentPosition = 0;
-
+    private TextView tvLogin;
     private final int TYPE_HOME = 0;
     private final int TYPE_KNOWLEDGE = 1;
     private final int TYPE_WECHAT = 2;
     private final int TYPE_NAVIGATION = 3;
     private final int TYPE_PROJECT = 4;
-    private AlertDialog alertDialog2;
-    private boolean ma = false;
-    private TextView tvLogin;
 
 
     @Override
@@ -96,9 +79,9 @@ public class MainActivity extends BaseActivity<EmptyView, EmptyPresenter> implem
 
     @Override
     protected void initView() {
-
+        tv.setText(UIUtils.getString(R.string.play));
+        fragments = new ArrayList<>();
         //设置toolbar功能
-        tv.setText(R.string.play);
         toolbar.setNavigationIcon(null);
         toolbar.setTitleTextColor(getResources().getColor(R.color.white));
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, dl, toolbar, R.string.app_name, R.string.app_name);
@@ -106,6 +89,7 @@ public class MainActivity extends BaseActivity<EmptyView, EmptyPresenter> implem
         toggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.white));
         dl.addDrawerListener(toggle);
         fab.setOnClickListener(this);
+        mToolImg.setOnClickListener(this);
         toggle.syncState();
 
 
@@ -119,6 +103,7 @@ public class MainActivity extends BaseActivity<EmptyView, EmptyPresenter> implem
     private void initNav() {
         //解决侧滑菜单图标不显示问题
         nav.setItemIconTintList(null);
+
     }
 
     @Override
@@ -134,35 +119,39 @@ public class MainActivity extends BaseActivity<EmptyView, EmptyPresenter> implem
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 switch (menuItem.getItemId()) {
                     case R.id.collect:
-                        startActivity(new Intent(MainActivity.this, CollectActivity.class));
-
+                        boolean flag = (boolean) SpUtil.getParam(Constants.LOGIN, false);
+                        if (flag) {
+                            startActivity(new Intent(MainActivity.this, CollectActivity.class));
+                        } else {
+                            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                            intent.putExtra("judge", "judge");
+                            startActivity(intent);
+                        }
                         break;
                     case R.id.settings:
-
                         startActivity(new Intent(MainActivity.this, SettingsActivity.class));
                         break;
                     case R.id.night:
 
-                        initNight();
                         break;
                     case R.id.todo:
-
-                        startActivity(new Intent(MainActivity.this, TodoActivity.class));
+                        boolean flag1 = (boolean) SpUtil.getParam(Constants.LOGIN, false);
+                        if (flag1) {
+                            startActivity(new Intent(MainActivity.this, TodoActivity.class));
+                        } else {
+                            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                            intent.putExtra("judge", "judge");
+                            startActivity(intent);
+                        }
                         break;
                     case R.id.me:
-
                         startActivity(new Intent(MainActivity.this, MeActivity.class));
-                        break;
-                    case R.id.unLogin:
-                        if ((boolean) SpUtil.getParam(Constants.LOGIN, true)) {
-                            tanChuang();
-                        } else {
-                        }
                         break;
                 }
                 return false;
             }
         });
+<<<<<<< HEAD
         tool_img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -201,6 +190,8 @@ public class MainActivity extends BaseActivity<EmptyView, EmptyPresenter> implem
     private void initNight() {
         Toast.makeText(this, "夜间模式", Toast.LENGTH_SHORT).show();
         UIModeUtil.changeModeUI(MainActivity.this);
+=======
+>>>>>>> 3b02005faa208a6b5c8f80f1336689d849eb8059
     }
 
     private void initTitles() {
@@ -240,7 +231,10 @@ public class MainActivity extends BaseActivity<EmptyView, EmptyPresenter> implem
                         switchFragment(TYPE_KNOWLEDGE);
                         break;
                     case 2:
+<<<<<<< HEAD
 
+=======
+>>>>>>> 3b02005faa208a6b5c8f80f1336689d849eb8059
                         tv.setText(R.string.wechat);
                         switchFragment(TYPE_WECHAT);
                         break;
@@ -278,6 +272,7 @@ public class MainActivity extends BaseActivity<EmptyView, EmptyPresenter> implem
         transaction.hide(fragments.get(mLastFragmentPosition));
         transaction.show(fragment);
         transaction.commit();
+<<<<<<< HEAD
 
         mLastFragmentPosition = position;
 
@@ -295,6 +290,25 @@ public class MainActivity extends BaseActivity<EmptyView, EmptyPresenter> implem
                 mainFl.scrollBy(0, 0);
                 break;
 
+=======
+        mLastFragmentPosition = position;
+
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.tv_login:
+                if (tvLogin.getText().toString().trim().equals("登录"))
+                    startActivityForResult(new Intent(this, LoginActivity.class), 100);
+                break;
+            case R.id.fab:
+                mainFl.scrollBy(0, 0);
+                break;
+            case R.id.tool_img:
+                startActivity(new Intent(this,SearchActivity.class));
+                break;
+>>>>>>> 3b02005faa208a6b5c8f80f1336689d849eb8059
         }
     }
 
@@ -305,4 +319,9 @@ public class MainActivity extends BaseActivity<EmptyView, EmptyPresenter> implem
             tvLogin.setText((String) SpUtil.getParam(Constants.USERNAME, "登录"));
         }
     }
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 3b02005faa208a6b5c8f80f1336689d849eb8059
 }

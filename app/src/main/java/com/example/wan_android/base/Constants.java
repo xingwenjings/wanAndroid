@@ -38,6 +38,8 @@ public interface Constants {
 
     String LOGIN="login";
     String NAME = "name";
+    String PASSWORD = "password";
+    String ID = "id";
     String SearchName = "search_name";
     String MODE = "mode";
     String NIGHT_CURRENT_FRAG_POS = "fragment_pos";

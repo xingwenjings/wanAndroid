@@ -32,7 +32,7 @@ public class SouSouAdapter extends RecyclerView.Adapter<SouSouAdapter.ViewHolder
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View inflate = LayoutInflater.from(context).inflate(R.layout.layout_search, null);
+        View inflate = LayoutInflater.from(context).inflate(R.layout.item_label_search, null);
         return new ViewHolder(inflate);
 
     }
@@ -65,7 +65,7 @@ public class SouSouAdapter extends RecyclerView.Adapter<SouSouAdapter.ViewHolder
 
         public ViewHolder(View itemView) {
             super(itemView);
-             tv = itemView.findViewById(R.id.layout_tv);
+             tv = itemView.findViewById(R.id.tv_title);
         }
     }
 
