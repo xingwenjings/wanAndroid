@@ -41,6 +41,7 @@ public class HomeSearchHistoryRlvAdapter extends RecyclerView.Adapter{
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, final int i) {
         ViewHolder holder = (ViewHolder) viewHolder;
         holder.tv.setText(mSearchList.get(i));
+
         holder.mImgClose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

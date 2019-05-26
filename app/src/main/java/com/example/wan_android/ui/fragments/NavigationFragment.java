@@ -62,7 +62,6 @@ public class NavigationFragment extends BaseFragment<NaviView, NaviPresenter> im
         mList = new ArrayList<>();
         mAdapter = new NaviRlvAdapter(getContext(), mList);
         mRlv.setAdapter(mAdapter);
-
     }
 
     @Override

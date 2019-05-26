@@ -9,6 +9,7 @@ import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,7 +32,11 @@ import com.example.wan_android.view.SearchView;
 import com.example.wan_android.widght.FlowlayoutManger;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -66,6 +71,7 @@ public class SearchActivity extends BaseActivity<SearchView, SearchPresenter> im
     private ArrayList<String> mSearchList;
     private ListDataSave mListDataSave;
     private HomeSearchHistoryRlvAdapter mAdapter;
+    private int mIndex;
 
     @Override
     protected SearchPresenter initPresenter() {
@@ -120,16 +126,50 @@ public class SearchActivity extends BaseActivity<SearchView, SearchPresenter> im
         mAdapter.setonItemClickListener(new HomeSearchHistoryRlvAdapter.onItemClickListener() {
             @Override
             public void clicklistener(int position) {
+                Log.d(TAG, "clicklistener: 图标被点击了");
+                mSearchList.addAll(getHistorySearch());
+                mSearchList.remove(position);
+                mListDataSave.setDataList(Constants.LIST_SEARCH, mSearchList);
+                mSearchList.clear();
+                BingdingSearchRlv();
+                if (getHistorySearch().size() > 0) {
+                    mRlv.setVisibility(View.VISIBLE);
+                    mTvSearchMoney.setVisibility(View.GONE);
+                } else {
+                    mRlv.setVisibility(View.GONE);
+                    mTvSearchMoney.setVisibility(View.VISIBLE);
+                }
             }
         });
     }
 
     private void BingdingSearchRlv() {
         List<String> list = getHistorySearch();
-        mSearchList.addAll(list);
+        List<String> removeList = getRemoveList(list);
+        int size = removeList.size();
+        if (size>5){
+            mIndex = size - 5;
+        }
+        for (int i = 0; i < mIndex; i++) {
+            removeList.remove(5+mIndex-i-1);
+        }
+        mSearchList.addAll(removeList);
         mRlv.setLayoutManager(new LinearLayoutManager(this));
         mAdapter = new HomeSearchHistoryRlvAdapter(this, mSearchList);
         mRlv.setAdapter(mAdapter);
+    }
+
+    /**
+     * 去除重复
+     * @param list 搜索历史的数据
+     * @return
+     */
+    private List<String> getRemoveList(List<String> list) {
+        LinkedHashSet<String> set = new LinkedHashSet<>();
+        set.addAll(list);
+        ArrayList<String> strings = new ArrayList<>();
+        strings.addAll(set);
+        return strings;
     }
 
     /**
@@ -184,7 +224,6 @@ public class SearchActivity extends BaseActivity<SearchView, SearchPresenter> im
             case R.id.tv_clear:
                 mListDataSave.editor.clear().commit();
                 mSearchList.clear();
-                BingdingSearchRlv();
                 if (getHistorySearch().size() > 0) {
                     mRlv.setVisibility(View.VISIBLE);
                     mTvSearchMoney.setVisibility(View.GONE);
@@ -199,12 +238,18 @@ public class SearchActivity extends BaseActivity<SearchView, SearchPresenter> im
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 100 && resultCode == 200) {
-            mSearchList.clear();
-            BingdingSearchRlv();
-        }if (requestCode == 200 && resultCode == 200) {
-            mSearchList.clear();
-            BingdingSearchRlv();
+        if (resultCode == 200){
+            if (requestCode == 100 || requestCode == 200){
+                mSearchList.clear();
+                BingdingSearchRlv();
+                if (getHistorySearch().size() > 0) {
+                    mRlv.setVisibility(View.VISIBLE);
+                    mTvSearchMoney.setVisibility(View.GONE);
+                } else {
+                    mRlv.setVisibility(View.GONE);
+                    mTvSearchMoney.setVisibility(View.VISIBLE);
+                }
+            }
         }
     }
 
