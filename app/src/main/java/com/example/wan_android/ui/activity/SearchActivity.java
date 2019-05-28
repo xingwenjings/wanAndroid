@@ -27,6 +27,7 @@ import com.example.wan_android.presenter.SearchPresenter;
 import com.example.wan_android.ui.adapters.HomeSearchHistoryRlvAdapter;
 import com.example.wan_android.ui.adapters.SouSouAdapter;
 import com.example.wan_android.util.ListDataSave;
+import com.example.wan_android.util.ToastUtil;
 import com.example.wan_android.util.Tools;
 import com.example.wan_android.view.SearchView;
 import com.example.wan_android.widght.FlowlayoutManger;
@@ -85,7 +86,7 @@ public class SearchActivity extends BaseActivity<SearchView, SearchPresenter> im
 
     @Override
     protected void initView() {
-
+        sRe.setVisibility(View.GONE);
         mListDataSave = new ListDataSave(BaseApp.getInstance(), "search");
         mSearchList = new ArrayList<>();
 
@@ -126,19 +127,11 @@ public class SearchActivity extends BaseActivity<SearchView, SearchPresenter> im
         mAdapter.setonItemClickListener(new HomeSearchHistoryRlvAdapter.onItemClickListener() {
             @Override
             public void clicklistener(int position) {
-                Log.d(TAG, "clicklistener: 图标被点击了");
-                mSearchList.addAll(getHistorySearch());
-                mSearchList.remove(position);
-                mListDataSave.setDataList(Constants.LIST_SEARCH, mSearchList);
+                //Log.d(TAG, "clicklistener: 图标被点击了");
                 mSearchList.clear();
                 BingdingSearchRlv();
-                if (getHistorySearch().size() > 0) {
-                    mRlv.setVisibility(View.VISIBLE);
-                    mTvSearchMoney.setVisibility(View.GONE);
-                } else {
-                    mRlv.setVisibility(View.GONE);
-                    mTvSearchMoney.setVisibility(View.VISIBLE);
-                }
+                String s = mSearchList.get(position);
+                ToastUtil.showShort(s);
             }
         });
     }
@@ -190,6 +183,7 @@ public class SearchActivity extends BaseActivity<SearchView, SearchPresenter> im
         dataBeans.addAll(data);
         adapter.setDataBeans(dataBeans);
         adapter.notifyDataSetChanged();
+        sRe.setVisibility(View.VISIBLE);
     }
 
 

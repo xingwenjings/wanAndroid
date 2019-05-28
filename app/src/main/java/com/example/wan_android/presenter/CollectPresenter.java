@@ -1,10 +1,10 @@
 package com.example.wan_android.presenter;
 
-import com.example.wan_android.base.BasePresenter;
 import com.example.wan_android.bean.CollectBean;
 import com.example.wan_android.model.CollectModel;
 import com.example.wan_android.net.ResultCallBack;
 import com.example.wan_android.view.CollectView;
+import com.example.wan_android.base.BasePresenter;
 
 /**
  * Created by apcnl on 2019/5/23.

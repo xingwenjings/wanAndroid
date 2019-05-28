@@ -10,7 +10,6 @@ import android.widget.TextView;
 
 import com.example.wan_android.R;
 import com.example.wan_android.bean.CollectBean;
-import com.example.wan_android.ui.activity.CollectActivity;
 
 import java.util.ArrayList;
 import java.util.List;

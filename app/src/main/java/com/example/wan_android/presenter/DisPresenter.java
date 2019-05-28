@@ -1,7 +1,6 @@
 package com.example.wan_android.presenter;
 
 import com.example.wan_android.base.BaseMvpView;
-import com.example.wan_android.base.BasePresenter;
 import com.example.wan_android.bean.ClassifyBean;
 import com.example.wan_android.bean.KnowledgeBean;
 import com.example.wan_android.model.DisModel;
